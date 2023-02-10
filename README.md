@@ -11,9 +11,9 @@ code and translating it to another programming language, and much more.
 
 Technologies used: 
 
-⭐For build ->  React - https://reactjs.org/docs/getting-star...
+⭐For build ->  React - https://reactjs.org/docs/getting-started.html
 
-⭐For API -> OpenAi - https://openai.com/
+⭐For API -> OpenAi - https://openai.com/api/
 
 ⭐For server code deployment -> Render - https://render.com/
 
@@ -21,5 +21,5 @@ Technologies used:
 
 Installed NPM Packages:
 
-Axios - https://www.npmjs.com/package/axios-r...
+Axios - https://www.npmjs.com/package/axios-react
 cmd - npm i axios
