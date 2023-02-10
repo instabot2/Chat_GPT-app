@@ -1,10 +1,10 @@
 # Chat_GPT-clone app
 
+Demo link: https://chat-gpt-app-kedarmh.vercel.app/
+
 ChatGPT is a new Artificial Intelligence (AI) technology developed by OpenAI.
 
-In this I made an effort to create the same ChatGPT app by using OpenAI API with React and Node.js.
-
-Built this clone of an AI app using React.js with an elegant user interface that resembles the
+Built this clone of an AI app using React.js and Node.js with an elegant user interface that resembles the
 ChatGPT app, communication with advanced GPT3 model API, and most importantly, the ability
 to ask the AI for help regarding JavaScript, React, or any other programming language, giving it
 code and translating it to another programming language, and much more.
