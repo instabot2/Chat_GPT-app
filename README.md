@@ -19,8 +19,8 @@ Technologies used:
 
 🌈 For client code deployment -> Vercel - https://vercel.com/
 
-Installed NPM Packages:
+🔴 Installed NPM Packages:
 
-Axios - https://www.npmjs.com/package/axios-react
+✔  Axios - https://www.npmjs.com/package/axios-react
 
-cmd - npm i axios
+✔  cmd - npm i axios
