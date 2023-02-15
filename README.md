@@ -11,13 +11,13 @@
 
 Technologies used: 
 
- For build ->  React - https://reactjs.org/docs/getting-started.html
+🌈 For build ->  React - https://reactjs.org/docs/getting-started.html
 
- For API -> OpenAi - https://openai.com/api/
+🌈 For API -> OpenAi - https://openai.com/api/
 
- For server code deployment -> Render - https://render.com/
+🌈 For server code deployment -> Render - https://render.com/
 
- For client code deployment -> Vercel - https://vercel.com/
+🌈 For client code deployment -> Vercel - https://vercel.com/
 
 Installed NPM Packages:
 
