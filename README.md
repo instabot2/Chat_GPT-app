@@ -9,6 +9,7 @@
 
 💠It's amazing to see the potential of AI and how it can be integrated into real-world applications.
 
+
 Technologies used: 
 
 🌈 For build ->  React - https://reactjs.org/docs/getting-started.html
@@ -18,6 +19,7 @@ Technologies used:
 🌈 For server code deployment -> Render - https://render.com/
 
 🌈 For client code deployment -> Vercel - https://vercel.com/
+
 
 🔴 Installed NPM Packages:
 
