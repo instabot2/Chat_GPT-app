@@ -22,10 +22,6 @@ const openai = new OpenAIApi(configuration);
 
 app.post("/", async (req, res) => {
     try {
-        if (!req.body.input) {
-            throw new Error("No input provided");
-        }
-
         const response = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: req.body.input,
@@ -45,39 +41,25 @@ app.post("/", async (req, res) => {
         console.log("FAILED: ", req.body.input)
         console.error(error)
 
-        if (error.response && error.response.status === 429) {
-            // Handle rate limiting error
-            res.status(429).send({
-                message: "Rate limit exceeded"
-            });
-        } else if (error.code === 'ENOTFOUND') {
-            // Handle connectivity error
-            res.status(500).send({
-                message: "Failed to connect to OpenAI API",
-                error: error.message
-            });
+        if (error.response && error.response.data && error.response.data.error) {
+            // If the error is from OpenAI API, send the error message
+            res.status(500).send(error.response.data.error)
         } else {
-            // Handle all other errors
-            res.status(500).send({
-                message: "Internal server error",
-                error: error.message
-            });
+            // Otherwise, send a generic error message
+            res.status(500).send("Internal server error")
         }
     }
-});
+})
 
+// Error handler for handling 404 errors
 app.use((req, res, next) => {
-    res.status(404).send({
-        message: "Route not found"
-    });
+    res.status(404).send("Not found");
 });
 
-app.use((error, req, res, next) => {
-    console.error(error)
-    res.status(500).send({
-        message: "Internal server error",
-        error: error.message
-    });
+// Error handler for handling all other errors
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send("Internal server error");
 });
 
-app.listen((4000), () => console.log("Server is running on port 4000"));
+app.listen(4000, () => console.log("Server is running on port 4000"));
