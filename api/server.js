@@ -22,6 +22,10 @@ const openai = new OpenAIApi(configuration);
 
 app.post("/", async (req, res) => {
     try {
+        if (!req.body.input) {
+            throw new Error("No input provided");
+        }
+
         const response = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: req.body.input,
@@ -40,8 +44,40 @@ app.post("/", async (req, res) => {
     } catch (error) {
         console.log("FAILED: ", req.body.input)
         console.error(error)
-        res.status(500).send(error)
+
+        if (error.response && error.response.status === 429) {
+            // Handle rate limiting error
+            res.status(429).send({
+                message: "Rate limit exceeded"
+            });
+        } else if (error.code === 'ENOTFOUND') {
+            // Handle connectivity error
+            res.status(500).send({
+                message: "Failed to connect to OpenAI API",
+                error: error.message
+            });
+        } else {
+            // Handle all other errors
+            res.status(500).send({
+                message: "Internal server error",
+                error: error.message
+            });
+        }
     }
-})
+});
+
+app.use((req, res, next) => {
+    res.status(404).send({
+        message: "Route not found"
+    });
+});
+
+app.use((error, req, res, next) => {
+    console.error(error)
+    res.status(500).send({
+        message: "Internal server error",
+        error: error.message
+    });
+});
 
 app.listen((4000), () => console.log("Server is running on port 4000"));
