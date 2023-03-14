@@ -53,7 +53,7 @@ app.post("/", async (req, res) => {
 
 // Error handler for handling 404 errors
 app.use((req, res, next) => {
-    res.status(404).send("Not found");
+    res.status(404).send("404 errors: Not found");
 });
 
 // Error handler for handling all other errors
