@@ -1,4 +1,4 @@
-# Chat_GPT_app
+# Chat_GPT-app
 
 🔶 Demo link: https://chat-gpt-app-kedarmh.vercel.app/
 
