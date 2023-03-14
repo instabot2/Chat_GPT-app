@@ -1,4 +1,4 @@
-# Chat_GPT-clone app
+# Chat_GPT_app
 
 🔶 Demo link: https://chat-gpt-app-kedarmh.vercel.app/
 
