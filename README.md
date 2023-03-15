@@ -11,12 +11,15 @@
 
 
 Technologies used: 
+🌈 model: "text-davinci-003"
 
 🌈 For build ->  React - https://reactjs.org/docs/getting-started.html
 
 🌈 For API -> OpenAi - https://openai.com/api/
 
 🌈 For server code deployment -> Render - https://render.com/
+    using method Web Service: https://render.com/docs/deploy-node-express-app
+    pointing the directory and file .js or .jsx
 
 🌈 For client code deployment -> Vercel - https://vercel.com/
 
