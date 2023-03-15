@@ -7,10 +7,9 @@
 
 💠This GPT3 model API has ability to help regarding JavaScript, React, or any other programming language, giving it code and translating it to another programming language, and much more.
 
-💠It's amazing to see the potential of AI and how it can be integrated into real-world applications.
+💠Technologies used, coding on github, vercel, server render and OpenAI: 
 
 
-Technologies used: 
 🌈 model: "text-davinci-003"
 
 🌈 For build ->  React - https://reactjs.org/docs/getting-started.html
