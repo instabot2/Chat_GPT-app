@@ -9,7 +9,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8080", { input });
+      const res = await axios.post("https://chatgpt-ai-83yl.onrender.com", { input });
       setResponse(res.data.bot);
     } catch (error) {
       console.error(error);
