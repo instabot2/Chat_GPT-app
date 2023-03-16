@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-//import Request from 'axios-react';
 
 import send from "./assets/send.svg";
 import user from "./assets/user.png";
