@@ -1,42 +1,35 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./App.css";
 
 function App() {
   const [input, setInput] = useState("");
   const [response, setResponse] = useState("");
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const res = await axios.post("https://chatgpt-ai-83yl.onrender.com", {
-        input: input,
-      });
-      
-
+      const res = await axios.post("http://localhost:8080", { input });
       setResponse(res.data.bot);
     } catch (error) {
       console.error(error);
+      setResponse("An error occurred. Please try again later.");
     }
   };
 
-  const handleInputChange = (event) => {
-    setInput(event.target.value);
-  };
-
   return (
-    <div>
+    <div className="App">
+      <h1>ChatGPT AI</h1>
       <form onSubmit={handleSubmit}>
-        <input type="text" value={input} onChange={handleInputChange} />
-        <button type="submit">Submit</button>
+        <input
+          type="text"
+          placeholder="Enter your message..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <button type="submit">Send</button>
       </form>
-
-      {response && (
-        <div>
-          <p>Bot:</p>
-          <p>{response}</p>
-        </div>
-      )}
+      <div className="response">{response}</div>
     </div>
   );
 }
