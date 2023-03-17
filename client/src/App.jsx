@@ -18,7 +18,7 @@ function App() {
   const fetchBotResponse = async () => {
     try {
       const { data } = await axios.post(
-        "https://jsonplaceholder.typicode.com/posts", // replace with your desired endpoint
+        "https://chatgpt-ai-83yl.onrender.com", // replace with your desired endpoint
         { input },
         {
           headers: {
