@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./index.css";
+//import "./index.css";
 
 function App() {
   const [input, setInput] = useState("");
