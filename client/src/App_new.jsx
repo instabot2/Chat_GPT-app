@@ -18,7 +18,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="chatGPT-app">
       <h1>ChatGPT AI</h1>
       <form onSubmit={handleSubmit}>
         <input
