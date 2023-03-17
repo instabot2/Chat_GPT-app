@@ -16,16 +16,21 @@ function App() {
   }, [posts]);
 
   const fetchBotResponse = async () => {
-    const { data } = await axios.post(
-      "https://chatgpt-ai-83yl.onrender.com",
-      { input },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    return data;
+    try {
+      const { data } = await axios.post(
+        "https://jsonplaceholder.typicode.com/posts", // replace with your desired endpoint
+        { input },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return data;
+    } catch (error) {
+      console.error(error);
+      return { bot: "Sorry, something went wrong. Please try again later." };
+    }
   };
 
   const onSubmit = () => {
@@ -86,7 +91,7 @@ function App() {
       onSubmit();
     }
   };
-
+  
   return (
     <main className="chatGPT-app">
       <section className="chat-container">
