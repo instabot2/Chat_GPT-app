@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -15,28 +16,17 @@ function App() {
       document.querySelector(".layout").scrollHeight;
   }, [posts]);
 
-  const fetchBotResponse = async (input) => {
-    try {
-      const { data } = await axios.post(
-        "https://mychatgpt-app.onrender.com",
-        { input },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          timeout: 5000, // set a timeout of 5 seconds
-        }
-      );
-      return data;
-    } catch (error) {
-      if (axios.isTimeout(error)) {
-        console.error(error);
-        throw new Error("Server is taking too long to respond");
-      } else {
-        console.error(error);
-        throw new Error("Error fetching bot response");
+  const fetchBotResponse = async () => {
+    const { data } = await axios.post(
+      "https://mychatgpt-app.onrender.com",
+      { input },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-    }
+    );
+    return data;
   };
 
   const onSubmit = () => {
@@ -145,4 +135,4 @@ function App() {
   );
 }
 
-export default App;               
+export default App;
