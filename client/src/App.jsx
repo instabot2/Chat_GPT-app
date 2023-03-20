@@ -1,5 +1,3 @@
-//"https://chatgpt-ai-83yl.onrender.com"
-
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -19,7 +17,8 @@ function App() {
 
   const fetchBotResponse = async () => {
     const { data } = await axios.post(
-      "https://mychatgpt-app.onrender.com",
+      //"https://mychatgpt-app.onrender.com",
+      "https://chatgpt-ai-83yl.onrender.com",
       { input },
       {
         headers: {
