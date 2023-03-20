@@ -1,3 +1,5 @@
+//"https://chatgpt-ai-83yl.onrender.com"
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -16,21 +18,16 @@ function App() {
   }, [posts]);
 
   const fetchBotResponse = async () => {
-    try {
-      const { data } = await axios.post(
-        "https://chatgpt-ai-83yl.onrender.com", // replace with your desired endpoint
-        { input },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      return data;
-    } catch (error) {
-      console.error(error);
-      return { bot: "Sorry, something went wrong. Please try again later." };
-    }
+    const { data } = await axios.post(
+      "https://mychatgpt-app.onrender.com",
+      { input },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return data;
   };
 
   const onSubmit = () => {
@@ -91,7 +88,7 @@ function App() {
       onSubmit();
     }
   };
-  
+
   return (
     <main className="chatGPT-app">
       <section className="chat-container">
@@ -139,4 +136,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;               
