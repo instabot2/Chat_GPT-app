@@ -21,13 +21,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 app.post("/", async (req, res) => {
-    const timeout = 5000; // 5 seconds
-
     try {
-        const timer = setTimeout(() => {
-            throw new Error('Request timed out');
-        }, timeout);
-
         const response = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: req.body.input,
@@ -38,14 +32,12 @@ app.post("/", async (req, res) => {
             presence_penalty: 0,
         });
 
-        clearTimeout(timer);
         console.log("PASSED: ", req.body.input)
         res.status(200).send({
             bot: response.data.choices[0].text
         })
 
     } catch (error) {
-        clearTimeout(timer);
         console.log("FAILED: ", req.body.input)
         console.error(error)
         res.status(500).send(error)
