@@ -119,7 +119,7 @@ function App() {
       </section>
       <footer>
         <input
-          className="composebar"
+          className="composebar no-scroll"
           value={input}
           autoFocus
           type="text"
