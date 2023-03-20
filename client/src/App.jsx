@@ -17,7 +17,7 @@ function App() {
 
   const fetchBotResponse = async () => {
     const { data } = await axios.post(
-      "https://chat-gpt-app.onrender.com",
+      "https://sudo-delete-web-service-mychatgpt-app.onrender.com",
       { input },
       {
         headers: {
