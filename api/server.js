@@ -40,28 +40,8 @@ app.post("/", async (req, res) => {
     } catch (error) {
         console.log("FAILED: ", req.body.input)
         console.error(error)
-
-        if (error.response && error.response.data && error.response.data.error) {
-            // If the error is from OpenAI API, send the error message
-            res.status(500).send(error.response.data.error)
-        } else {
-            // Otherwise, send a generic error message
-            res.status(500).send("Internal server error")
-        }
+        res.status(500).send(error)
     }
 })
 
-// Error handler for handling 404 errors
-app.use((req, res, next) => {
-    res.status(404).send("404 errors: Not found");
-});
-
-// Error handler for handling all other errors
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send("Internal server error");
-});
-
-app.listen(4000, () => console.log("Server is running on port 4000"));
-//app.listen(8080, () => console.log("Server is running on port 8080"));
-
+app.listen((4000), () => console.log("Server is running on port 4000"));
