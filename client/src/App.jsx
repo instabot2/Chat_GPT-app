@@ -24,7 +24,7 @@ function App() {
           headers: {
             "Content-Type": "application/json",
           },
-          timeout: 1000, // set a timeout of 5 seconds
+          timeout: 5000, // set a timeout of 5 seconds
         }
       );
       return data;
