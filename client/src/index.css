@@ -40,6 +40,7 @@ footer {
   border-radius: 10000px;
 }
 .composebar {
+  overflow: hidden;
   padding: 0 10px;
   font-weight: 400;
   font-size: 16px;
