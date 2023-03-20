@@ -15,17 +15,22 @@ function App() {
       document.querySelector(".layout").scrollHeight;
   }, [posts]);
 
-  const fetchBotResponse = async () => {
-    const { data } = await axios.post(
-      "https://chatgpt-ai-lujs.onrender.com",
-      { input },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    return data;
+  const fetchBotResponse = async (input) => {
+    try {
+      const { data } = await axios.post(
+        "https://chatgpt-ai-lujs.onrender.com",
+        { input },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw new Error("Error fetching bot response");
+    }
   };
 
   const onSubmit = () => {
