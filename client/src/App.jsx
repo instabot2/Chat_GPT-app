@@ -24,12 +24,18 @@ function App() {
           headers: {
             "Content-Type": "application/json",
           },
+          timeout: 5000, // set a timeout of 5 seconds
         }
       );
       return data;
     } catch (error) {
-      console.error(error);
-      throw new Error("Error fetching bot response");
+      if (axios.isTimeout(error)) {
+        console.error(error);
+        throw new Error("Server is taking too long to respond");
+      } else {
+        console.error(error);
+        throw new Error("Error fetching bot response");
+      }
     }
   };
 
