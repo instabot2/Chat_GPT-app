@@ -16,7 +16,21 @@ function App() {
       document.querySelector(".layout").scrollHeight;
   }, [posts]);
 
+  //const fetchBotResponse = async () => {
+  //  const { data } = await axios.post(
+  //    "https://chatgpt-ai-83yl.onrender.com/",
+  //    { input },
+  //    {
+  //      headers: {
+  //        "Content-Type": "application/json",
+  //      },
+  //    }
+  //  );
+  //  return data; 
+  //};
+
   const fetchBotResponse = async () => {
+  try {
     const { data } = await axios.post(
       "https://chatgpt-ai-83yl.onrender.com/",
       { input },
@@ -27,6 +41,10 @@ function App() {
       }
     );
     return data;
+    } catch (error) {
+      console.error("Error fetching bot response: ", error);
+      throw new Error("Could not fetch bot response.");
+    }
   };
 
   const onSubmit = () => {
