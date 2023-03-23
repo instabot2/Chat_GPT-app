@@ -1,6 +1,3 @@
-  //https://chatgpt-ai-83yl.onrender.com
-  //https://mychatgpt-app.onrender.com
-
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -18,6 +15,7 @@ function App() {
       document.querySelector(".layout").scrollHeight;
   }, [posts]);
 
+  // if error response data, try fixing the API key at server render
   const fetchBotResponse = async (input) => {
     try {
       const response = await axios.post(
