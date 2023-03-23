@@ -1,15 +1,7 @@
-  //const fetchBotResponse = async () => {
-  //  const { data } = await axios.post(
-  //    "https://chatgpt-ai-83yl.onrender.com",https://mychatgpt-app.onrender.com
-  //    { input },
-  //    {
-  //      headers: {
-  //        "Content-Type": "application/json",
-  //      },
-  //    }
-  //  );
-  //  return data; 
-  //};
+
+  //https://chatgpt-ai-83yl.onrender.com
+  //https://mychatgpt-app.onrender.com
+
 
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -31,7 +23,7 @@ function App() {
   const fetchBotResponse = async (input) => {
     try {
       const response = await axios.post(
-        "https://mychatgpt-app.onrender.com",
+        "https://chatgpt-ai-83yl.onrender.com",
         { input },
         {
           headers: {
