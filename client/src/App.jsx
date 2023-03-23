@@ -35,7 +35,7 @@ function App() {
     });
 
     if (!response.data) {
-      throw new Error("No response data received from bot.");
+      throw new Error("No response data received from bot.", error);
     }
 
     return response.data;
