@@ -1,9 +1,16 @@
+//import React from "react";
+//import ReactDOM from "react-dom/client";
+//import App from "./App";
+//import "./index.css";
+
+//ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+                                                                                                        
 import React, { useState } from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.css";
 
-const gifUrl = "/public/rotater.gif";
+const gifUrl = "/rotater.gif";
 
 const handleImageClick = (event, setImageVisible) => {
   event.target.style.display = "none";
@@ -35,14 +42,5 @@ const Root = () => {
   );
 };
 
-//ReactDOM.render(<Root />, document.getElementById("root"));
-
-
-//import React from "react";
-//import ReactDOM from "react-dom/client";
-//import App from "./App";
-//import "./index.css";
-
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-                                                                                                        
+ReactDOM.render(<Root />, document.getElementById("root"));
 
