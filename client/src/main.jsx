@@ -2,7 +2,6 @@
 //import ReactDOM from "react-dom/client";
 //import App from "./App";
 //import "./index.css";
-
 //ReactDOM.createRoot(document.getElementById("root")).render(<App />);
                                                                                                         
 import React, { useState } from "react";
@@ -33,6 +32,9 @@ const Root = () => {
             transform: "translate(-50%, -50%)",
             cursor: "pointer",
             zIndex: 999,
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
           }}
           onClick={(event) => handleImageClick(event, setImageVisible)}
         />
@@ -43,4 +45,3 @@ const Root = () => {
 };
 
 ReactDOM.render(<Root />, document.getElementById("root"));
-
