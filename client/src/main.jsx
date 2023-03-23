@@ -7,13 +7,6 @@ const gifUrl = "/rotater.gif";
 
 //ReactDOM.createRoot(document.getElementById("root")).render(<App />);
                                                                                                         
-import React, { useState } from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
-
-const gifUrl = "/rotater.gif";
-
 const handleImageClick = (event, setImageVisible) => {
   event.target.style.display = "none";
   setImageVisible(false);
