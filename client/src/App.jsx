@@ -30,15 +30,21 @@ function App() {
 
   const fetchBotResponse = async (input) => {
   try {
-    const response = await axios.post("https://chatgpt-ai-83yl.onrender.com", { input }, {
+    const response = await axios.post("https://mychatgpt-app.onrender.com", { input }, {
       headers: { "Content-Type": "application/json" },
     });
+
+    if (!response.data) {
+      throw new Error("No response data received from bot.");
+    }
+
     return response.data;
     } catch (error) {
       console.error("Error fetching bot response: ", error);
       throw new Error("Could not fetch bot response.");
     }
   };
+
 
   const onSubmit = () => {
     if (input.trim() === "") return;
