@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.css";
 
-const gifUrl = "/rotater.gif";
+const gifUrl = "/public/rotater.gif";
 
 const handleImageClick = (event, setImageVisible) => {
   event.target.style.display = "none";
@@ -43,8 +43,6 @@ const Root = () => {
 //import ReactDOM from "react-dom/client";
 //import App from "./App";
 //import "./index.css";
-
-//const gifUrl = "/rotater.gif";
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
                                                                                                         
