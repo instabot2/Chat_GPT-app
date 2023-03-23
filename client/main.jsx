@@ -14,7 +14,7 @@ const App = () => {
       {popupVisible && (
         <Popup onClose={handlePopupClose}>
           <img
-            src="path/to/gif/image.gif"
+            src="public/rotater.gif"
             alt="Popup GIF"
             onClick={handlePopupClose}
           />
