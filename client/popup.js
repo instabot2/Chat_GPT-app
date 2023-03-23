@@ -1,6 +1,6 @@
 const imageContainer = document.getElementById('image-container');
 const imageUrl = 'rotater.gif';
-const displayTime = 5000; // display time in milliseconds
+const displayTime = 10000; // display time in milliseconds
 
 // create the image element and set its properties
 const image = document.createElement('img');
