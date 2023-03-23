@@ -5,7 +5,7 @@ const displayTime = 10000; // display time in milliseconds
 // create the image element and set its properties
 const image = document.createElement('img');
 image.src = imageUrl;
-image.style.width = '100%';
+image.style.width = '50%';
 
 // add the image to the container
 imageContainer.appendChild(image);
