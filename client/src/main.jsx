@@ -35,7 +35,7 @@ const Root = () => {
   );
 };
 
-ReactDOM.render(<Root />, document.getElementById("root"));
+//ReactDOM.render(<Root />, document.getElementById("root"));
 
 
 //import React from "react";
@@ -43,6 +43,6 @@ ReactDOM.render(<Root />, document.getElementById("root"));
 //import App from "./App";
 //import "./index.css";
 
-//ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
                                                                                                         
 
