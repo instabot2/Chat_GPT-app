@@ -1,23 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './Popup.css';
 
-const Popup = ({ children, onClose }) => {
+function Popup({ onClose, children }) {
   return (
-    <div className="popup-wrapper">
-      <div className="popup">
-        <button className="close-button" onClick={onClose}>
-          &times;
+    <div className="Popup">
+      <div className="Popup-container">
+        <button className="Popup-close" onClick={onClose}>
+          Close
         </button>
-        <div className="content">{children}</div>
+        {children}
       </div>
     </div>
   );
-};
-
-Popup.propTypes = {
-  children: PropTypes.node.isRequired,
-  onClose: PropTypes.func.isRequired,
-};
+}
 
 export default Popup;
