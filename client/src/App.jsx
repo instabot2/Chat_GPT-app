@@ -1,3 +1,16 @@
+  //const fetchBotResponse = async () => {
+  //  const { data } = await axios.post(
+  //    "https://chatgpt-ai-83yl.onrender.com",https://mychatgpt-app.onrender.com
+  //    { input },
+  //    {
+  //      headers: {
+  //        "Content-Type": "application/json",
+  //      },
+  //    }
+  //  );
+  //  return data; 
+  //};
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -15,46 +28,43 @@ function App() {
       document.querySelector(".layout").scrollHeight;
   }, [posts]);
 
-  //const fetchBotResponse = async () => {
-  //  const { data } = await axios.post(
-  //    "https://chatgpt-ai-83yl.onrender.com",https://mychatgpt-app.onrender.com
-  //    { input },
-  //    {
-  //      headers: {
-  //        "Content-Type": "application/json",
-  //      },
-  //    }
-  //  );
-  //  return data; 
-  //};
-
   const fetchBotResponse = async (input) => {
-  try {
-    const response = await axios.post("https://mychatgpt-app.onrender.com", { input }, {
-      headers: { "Content-Type": "application/json" },
-    });
+    try {
+      const response = await axios.post(
+        "https://mychatgpt-app.onrender.com",
+        { input },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-    if (!response.data) {
-      throw new Error("No response data received from bot.", error);
-    }
+      if (!response.data) {
+        throw new Error("No response data received from bot.");
+      }
 
-    return response.data;
+      return response.data;
     } catch (error) {
       console.error("Error fetching bot response: ", error);
       throw new Error("Could not fetch bot response.");
     }
   };
 
-
   const onSubmit = () => {
     if (input.trim() === "") return;
     updatePosts(input);
     updatePosts("loading...", false, true);
     setInput("");
-    fetchBotResponse().then((res) => {
-      console.log(res.bot.trim());
-      updatePosts(res.bot.trim(), true);
-    });
+    fetchBotResponse(input)
+      .then((res) => {
+        console.log(res.bot.trim());
+        updatePosts(res.bot.trim(), true);
+      })
+      .catch((error) => {
+        console.error(error);
+        updatePosts("Error fetching bot response.", true);
+      });
   };
 
   const autoTypingBotResponse = (text) => {
@@ -62,16 +72,21 @@ function App() {
     let interval = setInterval(() => {
       if (index < text.length) {
         setPosts((prevState) => {
-          let lastItem = prevState.pop();
-          if (lastItem.type !== "bot") {
+          let lastItem = prevState.length > 0 ? prevState.pop() : null;
+          if (lastItem && lastItem.type !== "bot") {
             prevState.push({
               type: "bot",
               post: text.charAt(index - 1),
             });
-          } else {
+          } else if (lastItem) {
             prevState.push({
               type: "bot",
               post: lastItem.post + text.charAt(index - 1),
+            });
+          } else {
+            prevState.push({
+              type: "bot",
+              post: text.charAt(index - 1),
             });
           }
           return [...prevState];
@@ -104,6 +119,7 @@ function App() {
       onSubmit();
     }
   };
+
 
   return (
     <main className="chatGPT-app">
