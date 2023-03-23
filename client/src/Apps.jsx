@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Popup from './components/Popup';
-import './App.css';
+import './Popup.css';
 
 function App() {
   const [popupVisible, setPopupVisible] = useState(true);
