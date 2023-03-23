@@ -1,7 +1,5 @@
-
   //https://chatgpt-ai-83yl.onrender.com
   //https://mychatgpt-app.onrender.com
-
 
 import { useState, useEffect } from "react";
 import axios from "axios";
