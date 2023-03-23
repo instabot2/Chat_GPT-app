@@ -39,8 +39,11 @@ footer {
   background: #2b2b36;
   border-radius: 10000px;
 }
+
 .composebar {
-  overflow: hidden;
+  overflow-y: auto; /* add scrollbar for vertical overflow */
+  height: 100px; /* set a fixed height */
+  
   padding: 0 10px;
   font-weight: 400;
   font-size: 16px;
@@ -52,6 +55,7 @@ footer {
   min-width: calc(100% - 120px);
   background-color: transparent;
 }
+
 .send-button {
   display: flex;
   justify-content: center;
