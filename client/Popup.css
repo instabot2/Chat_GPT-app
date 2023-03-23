@@ -1,0 +1,41 @@
+.popup-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup {
+  position: relative;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px;
+  background-color: #fff;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.content {
+  margin-top: 10px;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
