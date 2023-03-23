@@ -17,7 +17,7 @@ function App() {
 
   //const fetchBotResponse = async () => {
   //  const { data } = await axios.post(
-  //    "https://chatgpt-ai-83yl.onrender.com/",
+  //    "https://chatgpt-ai-83yl.onrender.com",https://mychatgpt-app.onrender.com
   //    { input },
   //    {
   //      headers: {
@@ -28,18 +28,12 @@ function App() {
   //  return data; 
   //};
 
-  const fetchBotResponse = async () => {
+  const fetchBotResponse = async (input) => {
   try {
-    const { data } = await axios.post(
-      "https://mychatgpt-app.onrender.com",
-      { input },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    return data;
+    const response = await axios.post("https://chatgpt-ai-83yl.onrender.com", { input }, {
+      headers: { "Content-Type": "application/json" },
+    });
+    return response.data;
     } catch (error) {
       console.error("Error fetching bot response: ", error);
       throw new Error("Could not fetch bot response.");
