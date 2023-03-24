@@ -32,23 +32,11 @@ const Root = () => {
   };
 
   return (
-    <div
-      style={{
-        position: "relative",
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#000000",
-      }}
-    >
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
       {isImageVisible && !isError && (
         <>
           {isLoading && (
-            <div style={{ textAlign: "center", color: "#ffffff" }}>
-              Processing...
-            </div>
+            <div style={{ textAlign: "center" }}>Loading image...</div>
           )}
           <img
             src={gifUrl}
@@ -73,7 +61,7 @@ const Root = () => {
           />
         </>
       )}
-      {isError && <div style={{ color: "#ffffff" }}>Failed to load image.</div>}
+      {isError && <div>Failed to load image.</div>}
       <App />
     </div>
   );
