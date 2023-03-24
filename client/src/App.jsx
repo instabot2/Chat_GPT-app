@@ -139,6 +139,7 @@ function App() {
         </div>
       </section>
       <footer>
+        <div style={{ overflowY: 'scroll' }}>
         <input
           className="composebar"
           value={input}
@@ -148,6 +149,7 @@ function App() {
           onChange={(e) => setInput(e.target.value)}
           onKeyUp={onKeyUp}
         />
+        </div> 
         <div className="send-button" onClick={onSubmit}>
           <img src={send} />
         </div>
