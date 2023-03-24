@@ -61,7 +61,8 @@ footer {
   border: 0;
   //max-width: calc(100% - 120px);
   max-width: 100%;
-  min-width: calc(100% - 120px);
+  //min-width: calc(100% - 120px);
+  min-width: calc(100% - 20px);
   background-color: transparent;
 }
 
