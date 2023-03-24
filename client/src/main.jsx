@@ -27,14 +27,17 @@ const Root = () => {
           alt="Rotater GIF"
           style={{
             position: "absolute",
-            top: "0",
-            left: "0",
-            transform: "translate(-50%, -50%)",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            margin: "auto",
             cursor: "pointer",
             zIndex: 999,
-            width: "100%", // Added this line 
-            height: "100%", // Added this line 
+            maxWidth: "100%",
+            maxHeight: "100%",
             objectFit: "contain",
+            resize: "both", // Added this line
           }}
           onClick={(event) => handleImageClick(event, setImageVisible)}
         />
@@ -45,3 +48,6 @@ const Root = () => {
 };
 
 ReactDOM.render(<Root />, document.getElementById("root"));
+
+
+
