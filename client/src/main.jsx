@@ -32,14 +32,7 @@ const Root = () => {
   };
 
   return (
-    <div style={{
-        position: "relative",
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",}}>
-
+    <div style={{position: "relative",width: "100%",height: "100%",display: "flex",alignItems: "center",justifyContent: "center",}}>
       {isImageVisible && !isError && (
         <>
           {isLoading && (
