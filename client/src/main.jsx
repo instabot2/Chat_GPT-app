@@ -32,11 +32,23 @@ const Root = () => {
   };
 
   return (
-    <div style={{position: "relative",width: "100%",height: "100%",display: "flex",alignItems: "center",justifyContent: "center",}}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#000000",
+      }}
+    >
       {isImageVisible && !isError && (
         <>
           {isLoading && (
-            <div style={{ textAlign: "center" }}>Processing...</div>
+            <div style={{ textAlign: "center", color: "#ffffff" }}>
+              Processing...
+            </div>
           )}
           <img
             src={gifUrl}
@@ -54,7 +66,6 @@ const Root = () => {
               maxHeight: "100%",
               objectFit: "contain",
               display: isLoading ? "none" : "block",
-              backgroundColor: "#000000",
             }}
             onClick={(event) => handleImageClick(event, setImageVisible)}
             onError={handleImageError}
@@ -62,7 +73,7 @@ const Root = () => {
           />
         </>
       )}
-      {isError && <div>Failed to load apps.</div>}
+      {isError && <div style={{ color: "#ffffff" }}>Failed to load image.</div>}
       <App />
     </div>
   );
