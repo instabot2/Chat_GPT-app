@@ -25,19 +25,16 @@
   margin: 0 auto;
   padding: 0 20px;
 }
-
 @media screen and (min-width: 768px) {
   .chatGPT-app {
     max-width: 50vw;
   }
 }
-
 @media screen and (min-width: 1200px) {
   .chatGPT-app {
     max-width: 60vw;
   }
 }
-
 
 footer {
   display: flex;
