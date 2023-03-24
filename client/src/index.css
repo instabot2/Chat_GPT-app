@@ -68,8 +68,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  //padding: 15px 25px;
-  padding: 15px 100px;
+  padding: 15px 25px;
   height: 40px;
   background: linear-gradient(269deg, #2541fc 1.77%, #5466f2 99.15%);
   border-radius: 47px;
