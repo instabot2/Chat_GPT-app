@@ -111,6 +111,9 @@ function App() {
 
   return (
     <main className="chatGPT-app">
+      <header>
+        <h1>ChatGPT-3 AI</h1>
+      </header>
       <section className="chat-container">
         <div className="layout">
           {posts.map((post, index) => (
