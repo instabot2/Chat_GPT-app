@@ -37,7 +37,7 @@ const Root = () => {
       {isImageVisible && !isError && (
         <>
           {isLoading && (
-            <div style={{ textAlign: "center" }}>Loading image...</div>
+            <div style={{ textAlign: "center" }}>Loading...</div>
           )}
           <img
             src={gifUrl}
@@ -63,7 +63,7 @@ const Root = () => {
           />
         </>
       )}
-      {isError && <div>Failed to load image.</div>}
+      {isError && <div>Failed to load.</div>}
       <App />
     </div>
   );
