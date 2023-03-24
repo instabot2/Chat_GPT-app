@@ -21,7 +21,7 @@ const Root = () => {
 
   return (
     //<div style={{ position: "relative", width: "100vw", height: "100vh" }}>
-    <div style={{ position: "relative", width: "120%", height: "120%" }}>
+    <div style={{ position: "relative", width: "80%", height: "80%" }}>
       {isImageVisible && (
         <img
           src={gifUrl}
