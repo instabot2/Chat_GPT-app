@@ -20,7 +20,8 @@ const Root = () => {
   const [isImageVisible, setImageVisible] = useState(true);
 
   return (
-    <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
+    //<div style={{ position: "relative", width: "100vw", height: "100vh" }}>
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
       {isImageVisible && (
         <img
           src={gifUrl}
