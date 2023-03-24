@@ -1,48 +1,59 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
-function Summarize() {
-  const [input, setInput] = useState("");
-  const [summary, setSummary] = useState("");
+function SummarizeText() {
+  const [inputText, setInputText] = useState("");
+  const [summarizedText, setSummarizedText] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const summarizeText = async () => {
+  const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
+
+  const summarize = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.post(
         "https://api.openai.com/v1/engines/davinci-codex/completions",
         {
-          prompt: `Please summarize the following text: "${input}"\n\nSummary:`,
-          max_tokens: 60,
+          prompt: `Please summarize the following text: \n\n ${inputText}`,
+          max_tokens: 50,
           n: 1,
-          stop: "\n",
+          stop: ["\n\n"],
         },
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer <your_api_key>",
+            Authorization: `Bearer ${API_KEY}`,
           },
         }
       );
-
-      const summaryText = response.data.choices[0].text.trim();
-      setSummary(summaryText);
+      setIsLoading(false);
+      const summarized = response.data.choices[0].text;
+      setSummarizedText(summarized);
     } catch (error) {
-      console.error("Error summarizing text: ", error);
-      setSummary("");
+      console.error(error);
+      setIsLoading(false);
     }
   };
 
   return (
     <div>
+      <h1>Text Summarizer</h1>
       <textarea
-        rows={10}
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
+        placeholder="Enter text to summarize here"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
       />
-      <button onClick={summarizeText}>Summarize</button>
-      <div>{summary}</div>
+      <br />
+      <button onClick={summarize}>Summarize</button>
+      {isLoading && <p>Loading...</p>}
+      {summarizedText && (
+        <div>
+          <h3>Summarized text:</h3>
+          <p>{summarizedText}</p>
+        </div>
+      )}
     </div>
   );
 }
 
-export default Summarize;
-
+export default SummarizeText;
