@@ -18,35 +18,53 @@ const handleImageClick = (event, setImageVisible) => {
 
 const Root = () => {
   const [isImageVisible, setImageVisible] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+
+  const handleImageError = () => {
+    setIsLoading(false);
+    setIsError(true);
+    setImageVisible(false);
+  };
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
 
   return (
-    //<div style={{ position: "relative", width: "100vw", height: "100vh" }}>
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
-      {isImageVisible && (
-        <img
-          src={gifUrl}
-          alt="Rotater GIF"
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            margin: "auto",
-            cursor: "pointer",
-            zIndex: 999,
-            maxWidth: "100%",
-            maxHeight: "100%",
-            objectFit: "contain",
-          }}
-          onClick={(event) => handleImageClick(event, setImageVisible)}
-        />
+      {isImageVisible && !isError && (
+        <>
+          {isLoading && (
+            <div style={{ textAlign: "center" }}>Loading image...</div>
+          )}
+          <img
+            src={gifUrl}
+            alt="Rotater GIF"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              margin: "auto",
+              cursor: "pointer",
+              zIndex: 999,
+              maxWidth: "100%",
+              maxHeight: "100%",
+              objectFit: "contain",
+              display: isLoading ? "none" : "block",
+            }}
+            onClick={(event) => handleImageClick(event, setImageVisible)}
+            onError={handleImageError}
+            onLoad={handleImageLoad}
+          />
+        </>
       )}
+      {isError && <div>Failed to load image.</div>}
       <App />
     </div>
   );
 };
 
 ReactDOM.render(<Root />, document.getElementById("root"));
-
-
