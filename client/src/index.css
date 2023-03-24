@@ -69,7 +69,8 @@ footer {
   justify-content: center;
   align-items: center;
   padding: 15px 25px;
-  height: 40px;
+  //height: 40px;
+  height: 100px;  
   background: linear-gradient(269deg, #2541fc 1.77%, #5466f2 99.15%);
   border-radius: 47px;
   cursor: pointer;
