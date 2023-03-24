@@ -32,8 +32,8 @@ const Root = () => {
             transform: "translate(-50%, -50%)",
             cursor: "pointer",
             zIndex: 999,
-            width: "100vw", // Added this line 
-            height: "100vh", // Added this line 
+            width: "100%", // Added this line 
+            height: "100%", // Added this line 
             objectFit: "contain",
           }}
           onClick={(event) => handleImageClick(event, setImageVisible)}
