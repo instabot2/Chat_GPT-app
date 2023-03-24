@@ -27,12 +27,12 @@ const Root = () => {
           alt="Rotater GIF"
           style={{
             position: "absolute",
-            top: "50%",
-            left: "50%",
+            top: "0",
+            left: "0",
             transform: "translate(-50%, -50%)",
             cursor: "pointer",
             zIndex: 999,
-            //width: "100%", // Added this line 
+            width: "100%", // Added this line 
             height: "100%", // Added this line 
             objectFit: "contain",
           }}
