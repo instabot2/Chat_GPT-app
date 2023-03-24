@@ -35,7 +35,7 @@ const Root = () => {
             margin: "auto",
             cursor: "pointer",
             zIndex: 999,
-            maxWidth: "800px",
+            maxWidth: "1500px",
             maxHeight: "100%",
             objectFit: "contain",
           }}
