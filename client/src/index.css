@@ -20,10 +20,10 @@
 }
 
 .chatGPT-app {
-  //max-width: 1200px;
+  /* max-width: 1200px; */
   max-width: 100%; /* or any other value that works for you */
   margin: 0 auto;
-  //padding: 0 20px;
+  /* padding: 0 20px; */
   padding: 0;
 }
 @media screen and (min-width: 768px) {
@@ -36,6 +36,7 @@
     max-width: 60vw;
   }
 }
+
 
 footer {
   display: flex;
