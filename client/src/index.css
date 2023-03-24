@@ -51,8 +51,7 @@ footer {
 
 .composebar {
   overflow-y: auto; /* add scrollbar for vertical overflow */
-  //height: 100px; /* set a fixed height */
-  height: 200px; /* set a fixed height */
+  height: 100px; /* set a fixed height */
   padding: 0 10px;
   font-weight: 400;
   font-size: 16px;
