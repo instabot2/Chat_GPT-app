@@ -54,6 +54,7 @@ const Root = () => {
               maxHeight: "100%",
               objectFit: "contain",
               display: isLoading ? "none" : "block",
+              backgroundColor: "#000000",
             }}
             onClick={(event) => handleImageClick(event, setImageVisible)}
             onError={handleImageError}
