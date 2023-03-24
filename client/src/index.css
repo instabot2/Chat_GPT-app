@@ -51,7 +51,7 @@ footer {
 
 .composebar {
   overflow-y: auto; /* add scrollbar for vertical overflow */
-  height: 100px; /* set a fixed height */
+  //height: 100px; /* set a fixed height */
   padding: 0 10px;
   font-weight: 400;
   font-size: 16px;
@@ -64,6 +64,7 @@ footer {
   //min-width: calc(100% - 120px);
   min-width: calc(100% - 5px);
   background-color: transparent;
+  resize: vertical; /* allow vertical resizing */
 }
 
 .send-button {
