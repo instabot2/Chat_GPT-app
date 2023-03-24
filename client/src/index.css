@@ -21,7 +21,7 @@
 
 .chatGPT-app {
   //max-width: 1200px;
-  max-width: 500px; /* or any other value that works for you */
+  max-width: 600px; /* or any other value that works for you */
   margin: 0 auto;
   padding: 0 20px;
 }
