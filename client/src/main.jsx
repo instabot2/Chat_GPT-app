@@ -37,6 +37,7 @@ const Root = () => {
             zIndex: 999,
             maxWidth: "100%",
             maxHeight: "100%",
+            objectFit: "cover",
           }}
           onClick={(event) => handleImageClick(event, setImageVisible)}
         />
