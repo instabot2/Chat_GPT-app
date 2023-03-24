@@ -37,7 +37,7 @@ const Root = () => {
             zIndex: 999,
             maxWidth: "100%",
             maxHeight: "100%",
-            objectFit: "cover",
+            objectFit: "contain",
           }}
           onClick={(event) => handleImageClick(event, setImageVisible)}
         />
@@ -48,4 +48,5 @@ const Root = () => {
 };
 
 ReactDOM.render(<Root />, document.getElementById("root"));
+
 
