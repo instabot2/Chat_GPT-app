@@ -35,8 +35,8 @@ const Root = () => {
             margin: "auto",
             cursor: "pointer",
             zIndex: 999,
-            maxWidth: "100%",
-            maxHeight: "100%",
+            maxWidth: "200%",
+            maxHeight: "200%",
           }}
           onClick={(event) => handleImageClick(event, setImageVisible)}
         />
