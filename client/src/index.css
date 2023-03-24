@@ -51,7 +51,8 @@ footer {
 
 .composebar {
   overflow-y: auto; /* add scrollbar for vertical overflow */
-  height: 100px; /* set a fixed height */
+  //height: 100px; /* set a fixed height */
+  height: 200px; /* set a fixed height */
   padding: 0 10px;
   font-weight: 400;
   font-size: 16px;
@@ -69,8 +70,7 @@ footer {
   justify-content: center;
   align-items: center;
   padding: 15px 25px;
-  //height: 40px;
-  height: 100px;  
+  height: 40px;
   background: linear-gradient(269deg, #2541fc 1.77%, #5466f2 99.15%);
   border-radius: 47px;
   cursor: pointer;
