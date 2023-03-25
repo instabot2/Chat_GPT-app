@@ -33,7 +33,7 @@ function App() {
   const fetchBotResponse = async (input) => {
     try {
       const response = await axios.post(
-        "https://chatgpt-ai-83yl.onrender.com",
+        "https://chatgpt-ai-83yl.onrender.com/api/gpt",
         { input },
         {
           headers: {
@@ -73,7 +73,7 @@ function App() {
         console.error(error);
         updatePosts("Error fetching bot response.", true);
       });
-   };
+  };
 
   const autoTypingBotResponse = (text) => {
     let index = 0;
