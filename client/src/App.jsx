@@ -139,6 +139,7 @@ function App() {
         </div>
       </section>
       <footer>
+        <div style={{ height: '50px', overflow: 'auto' }}>
         <input
           className="composebar"
           value={input}
@@ -147,8 +148,9 @@ function App() {
           placeholder="Ask anything!"
           onChange={(e) => setInput(e.target.value)}
           onKeyUp={onKeyUp}
-          style={{ overflow: 'auto' }} // add this line to add a scrollbar
-        />    
+          style={{ height: '100%', width: '100%', border: 'none', outline: 'none' }}
+        />
+        </div>
         <div className="send-button" onClick={onSubmit}>
           <img src={send} />
         </div>
