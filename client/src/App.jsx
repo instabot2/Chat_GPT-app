@@ -154,8 +154,8 @@ function App() {
             outline: 'none', 
             scrollbarWidth: 'thin', 
             scrollbarColor: '#333 #ddd' 
-          }}
-        />
+            }}
+         />
     
         <div className="send-button" onClick={onSubmit}>
           <img src={send} />
