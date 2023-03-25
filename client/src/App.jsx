@@ -56,7 +56,7 @@ function App() {
   const onSubmit = () => {
     if (input.trim() === "") return;
       updatePosts(input, false);
-      updatePosts("AI.. ", false, true);
+      updatePosts("", false, true);
       setInput("");
       fetchBotResponse(input)
         .then((res) => {
