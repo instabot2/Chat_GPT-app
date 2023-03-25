@@ -43,18 +43,32 @@ function App() {
       );
 
       if (!response.data) {
-        throw new Error("No response data received from AI.");
+        throw new Error("No response data received from bot.");
       }
 
       return response.data;
     } catch (error) {
-      console.error("Error fetching AI response: ", error);
-      throw new Error("Could not fetch AI response.");
+      console.error("Error fetching bot response: ", error);
+      throw new Error("Could not fetch bot response.");
     }
   };
 
+  const onSubmit = () => {
+    if (input.trim() === "") return;
+    updatePosts(input);
+    updatePosts("loading...", false, true);
+    setInput("");
+    fetchBotResponse(input)
+      .then((res) => {
+        console.log(res.bot.trim());
+        updatePosts(res.bot.trim(), true);
+      })
+      .catch((error) => {
+        console.error(error);
+        updatePosts("Error fetching bot response.", true);
+      });
+  };
 
-  
   const autoTypingBotResponse = (text) => {
     let index = 0;
     let interval = setInterval(() => {
@@ -64,17 +78,17 @@ function App() {
           if (lastItem && lastItem.type !== "bot") {
             prevState.push({
               type: "bot",
-              post: lastItem.post + text.charAt(index),
+              post: text.charAt(index - 1),
             });
           } else if (lastItem) {
             prevState.push({
               type: "bot",
-              post: lastItem.post + text.charAt(index),
+              post: lastItem.post + text.charAt(index - 1),
             });
           } else {
             prevState.push({
               type: "bot",
-              post: text.charAt(index),
+              post: text.charAt(index - 1),
             });
           }
           historyRef.current = [...prevState];
