@@ -153,8 +153,8 @@ function App() {
             border: 'none', 
             outline: 'none', 
             scrollbarWidth: 'thin', 
-            scrollbarColor: '#333 #ddd' 
-            }}
+            scrollbarColor: "darkgray #222"
+           }}
          />
     
         <div className="send-button" onClick={onSubmit}>
