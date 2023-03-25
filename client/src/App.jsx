@@ -154,6 +154,13 @@ function App() {
             outline: 'none',
             '-ms-overflow-style': 'none', /* IE and Edge */
             'scrollbar-width': 'none', /* Firefox */
+            /* Change the scrollbar color */
+            '::-webkit-scrollbar': {
+              width: '6px',
+            },
+            '::-webkit-scrollbar-thumb': {
+              backgroundColor: 'gray',
+            },
           }}
           onScroll={(e) => {
             e.preventDefault(); /* Prevent scrolling */
@@ -163,8 +170,7 @@ function App() {
             e.preventDefault(); /* Prevent scrolling */
             e.stopPropagation();
           }}
-        >
-        </textarea>
+        />
 
         <div className="send-button" onClick={onSubmit}>
           <img src={send} />
