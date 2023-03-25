@@ -12,8 +12,8 @@ function App() {
   const historyRef = useRef([]);
 
   useEffect(() => {
-    document.querySelector(".layout").scrollTop =
-      document.querySelector(".layout").scrollHeight;
+    const layout = document.querySelector(".layout");
+    layout.scrollTop = layout.scrollHeight;
 
     // retrieve chat history from local storage
     const chatHistory = JSON.parse(localStorage.getItem("chatHistory"));
@@ -109,12 +109,13 @@ function App() {
           type: isLoading ? "loading" : "user",
           post,
         };
-        historyRef.current.push(newPost);
+        historyRef.current = [...historyRef.current, newPost];
         return [...prevState, newPost];
       });
     }
   };
  
+
   const onKeyUp = (e) => {
     if (e.key === "Enter" || e.which === 13) {
       onSubmit();
