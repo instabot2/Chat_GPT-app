@@ -56,7 +56,7 @@ function App() {
   const onSubmit = () => {
     if (input.trim() === "") return;
     updatePosts(input, false);
-    updatePosts("loading...", false, true);
+    //updatePosts("loading... ", false, true);
     setInput("");
     fetchBotResponse(input)
       .then((res) => {
@@ -65,7 +65,7 @@ function App() {
       })
       .catch((error) => {
         console.error(error);
-        updatePosts("Error fetching bot response.", true);
+        updatePosts("Error fetching server response.", true);
       });
   };
 
