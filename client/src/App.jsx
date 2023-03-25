@@ -55,7 +55,7 @@ function App() {
 
   const onSubmit = () => {
     if (input.trim() === "") return;
-    updatePosts(input);
+    updatePosts(input, false);
     updatePosts("loading...", false, true);
     setInput("");
     fetchBotResponse(input)
@@ -78,17 +78,17 @@ function App() {
           if (lastItem && lastItem.type !== "bot") {
             prevState.push({
               type: "bot",
-              post: text.charAt(index - 1),
+              post: lastItem.post + text.charAt(index),
             });
           } else if (lastItem) {
             prevState.push({
               type: "bot",
-              post: lastItem.post + text.charAt(index - 1),
+              post: lastItem.post + text.charAt(index),
             });
           } else {
             prevState.push({
               type: "bot",
-              post: text.charAt(index - 1),
+              post: text.charAt(index),
             });
           }
           historyRef.current = [...prevState];
