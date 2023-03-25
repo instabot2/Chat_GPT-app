@@ -139,16 +139,17 @@ function App() {
         </div>
       </section>
       <footer>
-        <input
+      
+        <textarea
           className="composebar"
           value={input}
           autoFocus
-          type="text"
           placeholder="Ask anything!"
           onChange={(e) => setInput(e.target.value)}
           onKeyUp={onKeyUp}
-          style={{ overflow: 'auto' }} // add this line to add a scrollbar
-        />     
+          style={{ overflow: 'hidden', resize: 'none', border: 'none', outline: 'none' }}
+        />
+
         <div className="send-button" onClick={onSubmit}>
           <img src={send} />
         </div>
