@@ -147,7 +147,8 @@ function App() {
           placeholder="Ask anything!"
           onChange={(e) => setInput(e.target.value)}
           onKeyUp={onKeyUp}
-        />
+          style={{ overflow: 'auto' }} // add this line to add a scrollbar
+        />    
         <div className="send-button" onClick={onSubmit}>
           <img src={send} />
         </div>
