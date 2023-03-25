@@ -65,7 +65,7 @@ footer {
   //max-width: calc(100% - 120px);
   max-width: 100%;
   //min-width: calc(100% - 120px);
-  min-width: calc(100% - 80px);
+  min-width: calc(100% - 100px);
   background-color: transparent;
   resize: vertical; /* allow vertical resizing */
   display: flex;
