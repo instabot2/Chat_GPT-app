@@ -145,6 +145,7 @@ function App() {
           value={input}
           autoFocus
           placeholder="Ask anything!"
+          rows={1}
           onChange={(e) => setInput(e.target.value)}
           onKeyUp={onKeyUp}
           style={{ overflow: 'hidden', resize: 'none', border: 'none', outline: 'none' }}
