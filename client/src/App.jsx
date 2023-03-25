@@ -25,8 +25,8 @@ function App() {
 
   useEffect(() => {
     // save chat history to local storage
-    localStorage.setItem("chatHistory", JSON.stringify(posts));
-  }, [posts]);
+    localStorage.setItem("chatHistory", JSON.stringify(historyRef.current));
+  }, [historyRef]);
 
   // if error response data, try fixing the API key at server render
   const fetchBotResponse = async (input) => {
@@ -90,6 +90,7 @@ function App() {
               post: text.charAt(index - 1),
             });
           }
+          historyRef.current = [...prevState];
           return [...prevState];
         });
         index++;
@@ -113,7 +114,7 @@ function App() {
       });
     }
   };
-
+ 
   const onKeyUp = (e) => {
     if (e.key === "Enter" || e.which === 13) {
       onSubmit();
