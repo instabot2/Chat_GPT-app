@@ -128,7 +128,7 @@ function App() {
     <main className="chatGPT-app">
       <section className="chat-container">
         <div className="layout">
-          {posts.map((post, index) => (
+          {chatHistory.map((post, index) => (
             <div
               key={index}
               className={`chat-bubble ${
@@ -153,6 +153,7 @@ function App() {
           ))}
         </div>
       </section>
+  
       <footer>
         <textarea
           className="composebar"
