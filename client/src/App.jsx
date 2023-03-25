@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 import send from "./assets/send.svg";
@@ -9,6 +9,7 @@ import loadingIcon from "./assets/loader.svg";
 function App() {
   const [input, setInput] = useState("");
   const [posts, setPosts] = useState([]);
+  const historyRef = useRef([]);
 
   useEffect(() => {
     document.querySelector(".layout").scrollTop =
@@ -91,13 +92,12 @@ function App() {
       autoTypingBotResponse(post);
     } else {
       setPosts((prevState) => {
-        return [
-          ...prevState,
-          {
-            type: isLoading ? "loading" : "user",
-            post,
-          },
-        ];
+        const newPost = {
+          type: isLoading ? "loading" : "user",
+          post,
+        };
+        historyRef.current.push(newPost);
+        return [...prevState, newPost];
       });
     }
   };
@@ -108,6 +108,18 @@ function App() {
     }
   };
 
+  const handleUndo = () => {
+    const prevHistory = historyRef.current;
+    if (prevHistory.length > 0) {
+      const lastItem = prevHistory.pop();
+      setPosts((prevState) => {
+        const newState = [...prevState];
+        newState.pop();
+        return newState;
+      });
+      setInput(lastItem.post);
+    }
+  };
 
   return (
     <main className="chatGPT-app">
