@@ -139,7 +139,6 @@ function App() {
         </div>
       </section>
       <footer>
-      
         <textarea
           className="composebar"
           value={input}
@@ -150,7 +149,6 @@ function App() {
           onKeyUp={onKeyUp}
           style={{ overflowY: 'scroll', resize: 'none', border: 'none', outline: 'none' }}
         />
-
         <div className="send-button" onClick={onSubmit}>
           <img src={send} />
         </div>
