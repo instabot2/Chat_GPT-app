@@ -53,20 +53,6 @@ function App() {
     }
   };
 
-  const onSubmit = async () => {
-    if (input.trim() === "") return;
-    setInput("");
-    updatePosts(input, false, true);
-    try {
-      const response = await fetchBotResponse(input);
-      const botResponse = response.bot.trim();
-      updatePosts(botResponse, false, true);
-    } catch (error) {
-      console.error(error);
-      updatePosts("Error fetching AI response.", false, true);
-    }
-    updatePosts("loading...", true, true);
-  };
 
   
   const autoTypingBotResponse = (text) => {
