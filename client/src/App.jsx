@@ -148,7 +148,7 @@ function App() {
           rows={1}
           onChange={(e) => setInput(e.target.value)}
           onKeyUp={onKeyUp}
-          style={{ overflow: 'hidden', resize: 'none', border: 'none', outline: 'none' }}
+          style={{ overflowY: 'scroll', resize: 'none', border: 'none', outline: 'none' }}
         />
 
         <div className="send-button" onClick={onSubmit}>
