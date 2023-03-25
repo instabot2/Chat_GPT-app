@@ -53,20 +53,19 @@ function App() {
     }
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (input.trim() === "") return;
-    updatePosts(input, false);
-    updatePosts("loading...", true, false);
     setInput("");
-    fetchBotResponse(input)
-      .then((res) => {
-        console.log(res.bot.trim());
-        updatePosts(res.bot.trim(), true);
-      })
-      .catch((error) => {
-        console.error(error);
-        updatePosts("Error fetching bot response.", true);
-      });
+    updatePosts(input, false, true);
+    try {
+      const response = await fetchBotResponse(input);
+      const botResponse = response.bot.trim();
+      updatePosts(botResponse, false, true);
+    } catch (error) {
+      console.error(error);
+      updatePosts("Error fetching AI response.", false, true);
+    }
+    updatePosts("loading...", true, true);
   };
 
   
