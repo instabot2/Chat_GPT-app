@@ -9,21 +9,10 @@ import loadingIcon from "./assets/loader.svg";
 function App() {
   const [input, setInput] = useState("");
   const [posts, setPosts] = useState([]);
-  const [previousQuestion, setPreviousQuestion] = useState("");
 
   useEffect(() => {
     document.querySelector(".layout").scrollTop =
       document.querySelector(".layout").scrollHeight;
-
-    const handlePopstate = () => {
-      setPreviousQuestion(window.history.state?.previousQuestion || "");
-    };
-
-    window.addEventListener("popstate", handlePopstate);
-
-    return () => {
-      window.removeEventListener("popstate", handlePopstate);
-    };
   }, [posts]);
 
   // if error response data, try fixing the API key at server render
@@ -59,11 +48,6 @@ function App() {
       .then((res) => {
         console.log(res.bot.trim());
         updatePosts(res.bot.trim(), true);
-        window.history.pushState(
-          { previousQuestion: input },
-          "",
-          window.location.href
-        );
       })
       .catch((error) => {
         console.error(error);
@@ -124,11 +108,12 @@ function App() {
     }
   };
 
+
   return (
     <main className="chatGPT-app">
       <section className="chat-container">
         <div className="layout">
-          {chatHistory.map((post, index) => (
+          {posts.map((post, index) => (
             <div
               key={index}
               className={`chat-bubble ${
@@ -153,7 +138,6 @@ function App() {
           ))}
         </div>
       </section>
-  
       <footer>
         <textarea
           className="composebar"
