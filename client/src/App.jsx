@@ -55,19 +55,25 @@ function App() {
 
   const onSubmit = () => {
     if (input.trim() === "") return;
-    updatePosts(input);
-    updatePosts("loading...", false, true);
-    setInput("");
+    const chatHistory = [...historyRef.current]; // Get current chat history
+    const newPost = { type: "user", post: input }; // Create new post
+    chatHistory.push(newPost); // Add new post to chat history
+    updatePosts("loading...", false, true); // Show loading indicator
+    setPosts(chatHistory); // Update posts
+    setInput(""); // Clear input
     fetchBotResponse(input)
       .then((res) => {
         console.log(res.bot.trim());
-        updatePosts(res.bot.trim(), true);
+        const botPost = { type: "bot", post: res.bot.trim() }; // Create bot post
+        chatHistory.push(botPost); // Add bot post to chat history
+        setPosts(chatHistory); // Update posts
+        historyRef.current = chatHistory; // Update chat history
       })
       .catch((error) => {
         console.error(error);
         updatePosts("Error fetching bot response.", true);
       });
-  };
+   };
 
   const autoTypingBotResponse = (text) => {
     let index = 0;
@@ -106,12 +112,14 @@ function App() {
       autoTypingBotResponse(post);
     } else {
       setPosts((prevState) => {
+        const chatHistory = [...historyRef.current]; // Get current chat history
         const newPost = {
           type: isLoading ? "loading" : "user",
           post,
         };
-        historyRef.current = [...historyRef.current, newPost];
-        return [...prevState, newPost];
+        chatHistory.push(newPost); // Add new post to chat history
+        historyRef.current = chatHistory; // Update chat history
+        return chatHistory; // Return updated chat history
       });
     }
   };
