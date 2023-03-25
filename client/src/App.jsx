@@ -147,16 +147,25 @@ function App() {
           rows={1}
           onChange={(e) => setInput(e.target.value)}
           onKeyUp={onKeyUp}
-          style={{ 
-            overflowY: 'scroll', 
-            resize: 'none', 
-            border: 'none', 
-            outline: 'none', 
-            scrollbarWidth: 'thin', 
-            scrollbarColor: "darkgray #222"
-           }}
-         />
-    
+          style={{
+            overflowY: 'scroll',
+            resize: 'none',
+            border: 'none',
+            outline: 'none',
+            '-ms-overflow-style': 'none', /* IE and Edge */
+            'scrollbar-width': 'none', /* Firefox */
+          }}
+          onScroll={(e) => {
+            e.preventDefault(); /* Prevent scrolling */
+            e.stopPropagation();
+          }}
+          onWheel={(e) => {
+            e.preventDefault(); /* Prevent scrolling */
+            e.stopPropagation();
+          }}
+        >
+        </textarea>
+
         <div className="send-button" onClick={onSubmit}>
           <img src={send} />
         </div>
