@@ -33,7 +33,7 @@ function App() {
   const fetchBotResponse = async (input) => {
     try {
       const response = await axios.post(
-        "https://chatgpt-ai-83yl.onrender.com/api/gpt",
+        "https://chatgpt-ai-83yl.onrender.com",
         { input },
         {
           headers: {
@@ -55,19 +55,13 @@ function App() {
 
   const onSubmit = () => {
     if (input.trim() === "") return;
-    const chatHistory = [...historyRef.current]; // Get current chat history
-    const newPost = { type: "user", post: input }; // Create new post
-    chatHistory.push(newPost); // Add new post to chat history
-    updatePosts("loading...", false, true); // Show loading indicator
-    setPosts(chatHistory); // Update posts
-    setInput(""); // Clear input
+    updatePosts(input);
+    updatePosts("loading...", false, true);
+    setInput("");
     fetchBotResponse(input)
       .then((res) => {
         console.log(res.bot.trim());
-        const botPost = { type: "bot", post: res.bot.trim() }; // Create bot post
-        chatHistory.push(botPost); // Add bot post to chat history
-        setPosts(chatHistory); // Update posts
-        historyRef.current = chatHistory; // Update chat history
+        updatePosts(res.bot.trim(), true);
       })
       .catch((error) => {
         console.error(error);
@@ -112,14 +106,12 @@ function App() {
       autoTypingBotResponse(post);
     } else {
       setPosts((prevState) => {
-        const chatHistory = [...historyRef.current]; // Get current chat history
         const newPost = {
           type: isLoading ? "loading" : "user",
           post,
         };
-        chatHistory.push(newPost); // Add new post to chat history
-        historyRef.current = chatHistory; // Update chat history
-        return chatHistory; // Return updated chat history
+        historyRef.current = [...historyRef.current, newPost];
+        return [...prevState, newPost];
       });
     }
   };
