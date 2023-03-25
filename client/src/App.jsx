@@ -55,19 +55,19 @@ function App() {
 
   const onSubmit = () => {
     if (input.trim() === "") return;
-    updatePosts(input, false);
-    updatePosts("AI loading..", false, true);
-    setInput("");
-    fetchBotResponse(input)
-      .then((res) => {
-        console.log(res.bot.trim());
-        updatePosts(res.bot.trim(), true);
-      })
-      .catch((error) => {
-        console.error(error);
-        updatePosts("Error fetching AI response.", true);
-      });
-  };
+      updatePosts(input, false);
+      updatePosts("AI.. ", false, true);
+      setInput("");
+      fetchBotResponse(input)
+        .then((res) => {
+          console.log(res.bot.trim());
+          updatePosts(res.bot.trim(), true);
+        })
+        .catch((error) => {
+          console.error(error);
+          updatePosts("Error fetching AI response.", true);
+        });
+    };
 
   const autoTypingBotResponse = (text) => {
     let index = 0;
