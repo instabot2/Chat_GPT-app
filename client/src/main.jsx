@@ -57,7 +57,7 @@ const Root = () => {
               zIndex: 999,
               maxWidth: "100%",
               maxHeight: "100%",
-              objectFit: "contain",
+              objectFit: "cover",     
               display: isLoading ? "none" : "block",
               backgroundColor: "#000000",
             }}
