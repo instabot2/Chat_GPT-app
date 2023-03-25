@@ -43,20 +43,20 @@ function App() {
       );
 
       if (!response.data) {
-        throw new Error("No response data received from bot.");
+        throw new Error("No response data received from AI.");
       }
 
       return response.data;
     } catch (error) {
-      console.error("Error fetching bot response: ", error);
-      throw new Error("Could not fetch bot response.");
+      console.error("Error fetching AI response: ", error);
+      throw new Error("Could not fetch AI response.");
     }
   };
 
   const onSubmit = () => {
     if (input.trim() === "") return;
     updatePosts(input, false);
-    //updatePosts("loading... ", false, true);
+    updatePosts("loading... ", false, true);
     setInput("");
     fetchBotResponse(input)
       .then((res) => {
@@ -65,7 +65,7 @@ function App() {
       })
       .catch((error) => {
         console.error(error);
-        updatePosts("Error fetching server response.", true);
+        updatePosts("Error fetching AI response.", true);
       });
   };
 
