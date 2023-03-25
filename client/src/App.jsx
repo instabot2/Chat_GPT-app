@@ -147,8 +147,16 @@ function App() {
           rows={1}
           onChange={(e) => setInput(e.target.value)}
           onKeyUp={onKeyUp}
-          style={{ overflowY: 'scroll', resize: 'none', border: 'none', outline: 'none' }}
+          style={{ 
+            overflowY: 'scroll', 
+            resize: 'none', 
+            border: 'none', 
+            outline: 'none', 
+            scrollbarWidth: 'thin', 
+            scrollbarColor: '#333 #ddd' 
+          }}
         />
+    
         <div className="send-button" onClick={onSubmit}>
           <img src={send} />
         </div>
