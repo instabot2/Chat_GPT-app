@@ -56,7 +56,7 @@ function App() {
   const onSubmit = () => {
     if (input.trim() === "") return;
     updatePosts(input, false);
-    updatePosts(" ", false, true);
+    updatePosts("loading...", true, false);
     setInput("");
     fetchBotResponse(input)
       .then((res) => {
@@ -68,6 +68,7 @@ function App() {
         updatePosts("Error fetching bot response.", true);
       });
   };
+
   
   const autoTypingBotResponse = (text) => {
     let index = 0;
