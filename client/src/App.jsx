@@ -14,6 +14,18 @@ function App() {
   useEffect(() => {
     document.querySelector(".layout").scrollTop =
       document.querySelector(".layout").scrollHeight;
+
+    // retrieve chat history from local storage
+    const chatHistory = JSON.parse(localStorage.getItem("chatHistory"));
+    if (chatHistory && chatHistory.length > 0) {
+      setPosts(chatHistory);
+      historyRef.current = chatHistory;
+    }
+  }, []);
+
+  useEffect(() => {
+    // save chat history to local storage
+    localStorage.setItem("chatHistory", JSON.stringify(posts));
   }, [posts]);
 
   // if error response data, try fixing the API key at server render
