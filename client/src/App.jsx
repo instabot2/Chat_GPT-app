@@ -12,9 +12,6 @@ function App() {
   const historyRef = useRef([]);
 
   useEffect(() => {
-    const layout = document.querySelector(".layout");
-    layout.scrollTop = layout.scrollHeight;
-
     // retrieve chat history from local storage
     const chatHistory = JSON.parse(localStorage.getItem("chatHistory"));
     if (chatHistory && chatHistory.length > 0) {
@@ -26,7 +23,11 @@ function App() {
   useEffect(() => {
     // save chat history to local storage
     localStorage.setItem("chatHistory", JSON.stringify(historyRef.current));
-  }, [historyRef]);
+
+    // scroll to bottom of div when posts update
+    const layout = document.querySelector(".layout");
+    layout.scrollTop = layout.scrollHeight;
+  }, [posts]);
 
   // if error response data, try fixing the API key at server render
   const fetchBotResponse = async (input) => {
