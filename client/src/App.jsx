@@ -214,11 +214,9 @@ function App() {
         />
 
         <div className="send-button" onClick={onSubmit}>
-          <img src={send} />
+          <img src={send} /><button onClick={handleLogout}>Clear</button>
         </div>
-        <div>
-          <button onClick={handleLogout}>Clear</button>
-        </div>
+
       </footer>
     </main>
   );
