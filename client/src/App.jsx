@@ -78,17 +78,17 @@ function App() {
           if (lastItem && lastItem.type !== "bot") {
             prevState.push({
               type: "bot",
-              post: text.charAt(index - 1),
+              post: lastItem.post + text.charAt(index),
             });
           } else if (lastItem) {
             prevState.push({
               type: "bot",
-              post: lastItem.post + text.charAt(index - 1),
+              post: lastItem.post + text.charAt(index),
             });
           } else {
             prevState.push({
               type: "bot",
-              post: text.charAt(index - 1),
+              post: text.charAt(index),
             });
           }
           historyRef.current = [...prevState];
@@ -110,14 +110,8 @@ function App() {
           type: isLoading ? "loading" : "user",
           post,
         };
-        let history = historyRef.current;
-        if (history.length > 0) {
-          history = [...history, newPost];
-        } else {
-          history = [newPost];
-        }
-        historyRef.current = history;
-        return [...history];
+        historyRef.current = [...historyRef.current, newPost];
+        return [...prevState, newPost];
       });
     }
   };
