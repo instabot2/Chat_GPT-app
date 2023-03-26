@@ -32,9 +32,14 @@ function App() {
   }, [posts]);
 
 
-  const clearCacheAndHistory = () => {
-    window.location.href = window.location.origin;
-  };
+  const clearCacheAndReload = () => {
+    if (caches) {
+      caches.keys().then(function(names) {
+        for (let name of names) caches.delete(name);
+      });
+    }
+    window.location.reload(true);
+  }
   const handleLogout = () => {
     // Perform any necessary logout logic
     // Clear cache and history
