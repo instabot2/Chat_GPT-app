@@ -33,12 +33,9 @@ function App() {
 
 
   const clearCacheAndHistory = () => {
-    if (caches) {
-      caches.keys().then(function(names) {
-        for (let name of names) caches.delete(name);
-      });
-    }
-    window.location.reload(true);
+    caches.keys().then(function(names) {
+      for (let name of names) caches.delete(name);
+    });
   }
   const handleLogout = () => {
     // Perform any necessary logout logic
