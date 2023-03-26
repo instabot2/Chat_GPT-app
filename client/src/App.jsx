@@ -101,7 +101,7 @@ function App() {
     }, 20);
   };
 
-  const updatePosts = (post, isBot, isLoading) => {
+  const updatePosts = (post, isBot, isLoading, shouldConcat = true) => {
     if (isBot) {
       autoTypingBotResponse(post);
     } else {
@@ -110,7 +110,7 @@ function App() {
           type: isLoading ? "loading" : "user",
           post,
         };
-        const updatedHistory = [...historyRef.current, newPost];
+        const updatedHistory = shouldConcat ? [...historyRef.current, newPost] : [newPost];
         historyRef.current = updatedHistory;
         return [...prevState, ...updatedHistory];
       });
