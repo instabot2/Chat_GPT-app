@@ -33,9 +33,8 @@ function App() {
 
 
   const clearCacheAndHistory = () => {
-    caches.keys().then(function(names) {
-      for (let name of names) caches.delete(name);
-    });
+    window.location.reload(true);
+    window.localStorage.clear();
   }
   const handleLogout = () => {
     // Perform any necessary logout logic
