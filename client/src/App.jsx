@@ -55,7 +55,7 @@ function App() {
 
   const onSubmit = () => {
     if (input.trim() === "") return;
-    updatePosts(input);
+    updatePosts(input, false, false, input);
     updatePosts("loading...", false, true);
     setInput("");
     fetchBotResponse(input)
@@ -101,7 +101,8 @@ function App() {
     }, 20);
   };
 
-  const updatePosts = (post, isBot, isLoading) => {
+
+  const updatePosts = (post, isBot, isLoading, oldQuery) => {
     if (isBot) {
       autoTypingBotResponse(post);
     } else {
@@ -109,6 +110,7 @@ function App() {
         const newPost = {
           type: isLoading ? "loading" : "user",
           post,
+          oldQuery: oldQuery || null,
         };
         const newHistory = [...historyRef.current, newPost];
         historyRef.current = newHistory;
@@ -117,6 +119,8 @@ function App() {
     }
   };
 
+  
+  
   const onKeyUp = (e) => {
     if (e.key === "Enter" || e.which === 13) {
       onSubmit();
