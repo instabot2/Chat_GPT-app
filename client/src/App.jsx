@@ -216,7 +216,7 @@ function App() {
           <img src={send} />
         </div>
         <div>
-          <button onClick={handleLogout}>Logout</button>
+          <button onClick={handleLogout}>Clear</button>
         </div>
       </footer>
     </main>
