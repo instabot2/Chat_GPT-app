@@ -5,7 +5,7 @@ import user from "./assets/user.png";
 import bot from "./assets/bot.png";
 import loadingIcon from "./assets/loader.svg";
 
-import React from 'react';
+//import React from 'react';
 import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
 
 
