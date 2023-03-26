@@ -30,11 +30,11 @@ function App() {
   }, [posts]);
 
   // if error response data, try fixing the API key at server render
-  const fetchBotResponse = async (input) => {
+  const fetchBotResponse = async (input, oldQuery) => {
     try {
       const response = await axios.post(
         "https://chatgpt-ai-83yl.onrender.com",
-        { input },
+        { input: `${oldQuery ? oldQuery + " " : ""}${input}` },
         {
           headers: {
             "Content-Type": "application/json",
@@ -55,10 +55,11 @@ function App() {
 
   const onSubmit = () => {
     if (input.trim() === "") return;
-    updatePosts(input, false, false, input);
+    const oldQuery = historyRef.current.length > 0 ? historyRef.current[historyRef.current.length - 1].post : null;
+    updatePosts(input, false, false, oldQuery);
     updatePosts("loading...", false, true);
     setInput("");
-    fetchBotResponse(input)
+    fetchBotResponse(input, oldQuery)
       .then((res) => {
         console.log(res.bot.trim());
         updatePosts(res.bot.trim(), true);
@@ -101,6 +102,7 @@ function App() {
     }, 20);
   };
 
+  
   const updatePosts = (post, isBot, isLoading, oldQuery) => {
     if (isBot) {
       autoTypingBotResponse(post);
