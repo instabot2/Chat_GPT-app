@@ -33,7 +33,7 @@ function App() {
 
 
   const clearCacheAndHistory = () => {
-    window.location.reload();
+    window.location.replace(window.location.href);
   };
   const handleLogout = () => {
     // Perform any necessary logout logic
