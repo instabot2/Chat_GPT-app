@@ -78,17 +78,17 @@ function App() {
           if (lastItem && lastItem.type !== "bot") {
             prevState.push({
               type: "bot",
-              post: lastItem.post + text.charAt(index),
+              post: text.charAt(index - 1),
             });
           } else if (lastItem) {
             prevState.push({
               type: "bot",
-              post: lastItem.post + text.charAt(index),
+              post: lastItem.post + text.charAt(index - 1),
             });
           } else {
             prevState.push({
               type: "bot",
-              post: text.charAt(index),
+              post: text.charAt(index - 1),
             });
           }
           historyRef.current = [...prevState];
