@@ -55,21 +55,21 @@ function App() {
 
   const onSubmit = () => {
     if (input.trim() === "") return;
-    updatePosts(input);
-    updatePosts("loading...", false, true);
+    updatePosts(input, false, false, posts);
+    updatePosts("loading...", false, true, posts);
     setInput("");
     fetchBotResponse(input)
       .then((res) => {
         console.log(res.bot.trim());
-        updatePosts(res.bot.trim(), true);
+        updatePosts(res.bot.trim(), true, false, posts);
       })
       .catch((error) => {
         console.error(error);
-        updatePosts("Error fetching bot response.", true);
+        updatePosts("Error fetching bot response.", true, false, posts);
       });
   };
 
-  const autoTypingBotResponse = (text) => {
+  const autoTypingBotResponse = (text, oldHistory) => {
     let index = 0;
     let interval = setInterval(() => {
       if (index < text.length) {
@@ -91,7 +91,8 @@ function App() {
               post: text.charAt(index - 1),
             });
           }
-          historyRef.current = [...prevState];
+          const newHistory = [...oldHistory, ...prevState];
+          historyRef.current = newHistory;
           return [...prevState];
         });
         index++;
@@ -101,21 +102,23 @@ function App() {
     }, 20);
   };
 
-  const updatePosts = (post, isBot, isLoading) => {
+
+  const updatePosts = (post, isBot, isLoading, oldHistory) => {
     if (isBot) {
-      autoTypingBotResponse(post);
+      autoTypingBotResponse(post, oldHistory);
     } else {
       setPosts((prevState) => {
         const newPost = {
           type: isLoading ? "loading" : "user",
           post,
         };
-        const newHistory = [...historyRef.current, newPost];
+        const newHistory = [...oldHistory, newPost];
         historyRef.current = newHistory;
         return newHistory;
       });
     }
   };
+
 
   const onKeyUp = (e) => {
     if (e.key === "Enter" || e.which === 13) {
