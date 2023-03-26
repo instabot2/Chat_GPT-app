@@ -214,7 +214,7 @@ function App() {
         />
 
         <div className="send-button" onClick={onSubmit}>
-          <img src={send} /><button onClick={handleLogout}>Clear</button>
+          <img src={send} />&nbsp;&nbsp;<button onClick={handleLogout}>CL</button>
         </div>
 
       </footer>
