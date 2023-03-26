@@ -34,10 +34,10 @@ function App() {
   const fetchBotResponse = async (input, oldQuery) => {
     try {
       const query = `${oldQuery ? oldQuery + " " : ""}${input}`;
-      history.push(query); // add current query to history array
+      const chatHistory = history.join(", "); // summarize chat history
       const response = await axios.post(
         "https://chatgpt-ai-83yl.onrender.com",
-        { input: query },
+        { input: `${query}, ${chatHistory}` }, // concatenate current query with chat history
         {
           headers: {
             "Content-Type": "application/json",
@@ -49,14 +49,15 @@ function App() {
         throw new Error("No response data received from bot.");
       }
 
+      history.push(query);
       return response.data;
     } catch (error) {
       console.error("Error fetching bot response: ", error);
       throw new Error("Could not fetch bot response.");
     }
   };
-
   
+
   const onSubmit = () => {
     if (input.trim() === "") return;
     const oldQuery = historyRef.current.length > 0 ? historyRef.current[historyRef.current.length - 1].post : null;
