@@ -29,12 +29,15 @@ function App() {
     layout.scrollTop = layout.scrollHeight;
   }, [posts]);
 
-  // if error response data, try fixing the API key at server render
+
+  let history = []; // initialize empty array to hold user's input history
   const fetchBotResponse = async (input, oldQuery) => {
     try {
+      const query = `${oldQuery ? oldQuery + " " : ""}${input}`;
+      history.push(query); // add current query to history array
       const response = await axios.post(
         "https://chatgpt-ai-83yl.onrender.com",
-        { input: `${oldQuery ? oldQuery + " " : ""}${input}` },
+        { input: query },
         {
           headers: {
             "Content-Type": "application/json",
@@ -53,6 +56,7 @@ function App() {
     }
   };
 
+  
   const onSubmit = () => {
     if (input.trim() === "") return;
     const oldQuery = historyRef.current.length > 0 ? historyRef.current[historyRef.current.length - 1].post : null;
