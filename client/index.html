@@ -31,15 +31,6 @@
         resize: both;
       }
     </style>
-    
-    <script>
-    function clearHistory() {
-      window.history.pushState(null, null, window.location.href);
-      window.addEventListener('popstate', function () {
-        window.location.href = window.location.href;
-      });
-    }
-    </script>
   </head>
   
   <body>
@@ -54,7 +45,6 @@
       }
     </script>
     <script type="module" src="/src/main.jsx"></script>
-    <button onclick="clearHistory()"></button>
 
   </body>
 </html>
