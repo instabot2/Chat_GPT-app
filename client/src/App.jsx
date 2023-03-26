@@ -6,7 +6,6 @@ import bot from "./assets/bot.png";
 import loadingIcon from "./assets/loader.svg";
 
 import React from 'react';
-//import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
 
 
 function App() {
@@ -34,16 +33,13 @@ function App() {
 
 
   const clearCacheAndHistory = () => {
-    localStorage.clear();
-    window.location.reload(true);
+    window.location.reload();
   };
-  const history = useHistory();
   const handleLogout = () => {
     // Perform any necessary logout logic
     // Clear cache and history
     clearCacheAndHistory();
   };
-
 
   
   // if error response data, try fixing the API key at server render
@@ -220,7 +216,7 @@ function App() {
           <img src={send} />
         </div>
         <div>
-          <button onClick={handleLogout}>Clear</button>
+          <button onClick={handleLogout}>Logout</button>
         </div>
       </footer>
     </main>
