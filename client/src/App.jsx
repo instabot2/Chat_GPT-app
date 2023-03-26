@@ -32,7 +32,7 @@ function App() {
   }, [posts]);
 
 
-  const clearCacheAndReload = () => {
+  const clearCacheAndHistory = () => {
     if (caches) {
       caches.keys().then(function(names) {
         for (let name of names) caches.delete(name);
