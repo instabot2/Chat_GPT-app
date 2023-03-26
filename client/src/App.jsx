@@ -6,7 +6,7 @@ import bot from "./assets/bot.png";
 import loadingIcon from "./assets/loader.svg";
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
+//import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
 
 
 function App() {
@@ -34,7 +34,8 @@ function App() {
 
 
   const clearCacheAndHistory = () => {
-    window.location.replace(window.location.href);
+    localStorage.clear();
+    window.location.reload(true);
   };
   const history = useHistory();
   const handleLogout = () => {
