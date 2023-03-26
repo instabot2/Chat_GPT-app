@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import send from "./assets/send.svg";
+import user from "./assets/trash.png";
 import user from "./assets/user.png";
 import bot from "./assets/bot.png";
 import loadingIcon from "./assets/loader.svg";
@@ -214,7 +215,8 @@ function App() {
         />
 
         <div className="send-button" onClick={onSubmit}>
-          <img src={send} />&nbsp;&nbsp;<button onClick={handleLogout}>CL</button>
+          <img src={send} />&nbsp;&nbsp;
+          <a href="#" onClick={handleLogout}><img src={send} alt="send" /></a>
         </div>
 
       </footer>
