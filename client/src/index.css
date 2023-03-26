@@ -88,7 +88,8 @@ footer {
   margin-right: -5px;
 }
 .chat-container {
-  height: calc(100vh - 80px);
+  //height: calc(100vh - 80px);
+  flex: 1;
   padding: 20px 0;
 }
 .layout {
