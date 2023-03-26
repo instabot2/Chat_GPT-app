@@ -110,8 +110,14 @@ function App() {
           type: isLoading ? "loading" : "user",
           post,
         };
-        historyRef.current = [...historyRef.current, newPost];
-        return [...prevState, newPost];
+        let history = historyRef.current;
+        if (history.length > 0) {
+          history = [...history, newPost];
+        } else {
+          history = [newPost];
+        }
+        historyRef.current = history;
+        return [...history];
       });
     }
   };
