@@ -215,7 +215,7 @@ function App() {
         />
 
         <div className="send-button" onClick={onSubmit}>
-          <img src={send} />&nbsp;&nbsp;&nbsp;
+          <img src={send} />&nbsp;&nbsp;
           <a href="#" onClick={handleLogout}><img src={trash} alt="trash" /></a>
         </div>
 
