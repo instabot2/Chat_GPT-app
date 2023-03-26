@@ -29,14 +29,12 @@ function App() {
     layout.scrollTop = layout.scrollHeight;
   }, [posts]);
 
-
-  const fetchBotResponse = async (input, oldQuery) => {
+  // if error response data, try fixing the API key at server render
+  const fetchBotResponse = async (input) => {
     try {
-      const query = oldQuery ? `${oldQuery} ${input}` : input;
-      const chatHistory = historyRef.current.map((post) => post.post).join(", ");
       const response = await axios.post(
         "https://chatgpt-ai-83yl.onrender.com",
-        { input: `${query}, ${chatHistory}` },
+        { input },
         {
           headers: {
             "Content-Type": "application/json",
@@ -48,7 +46,6 @@ function App() {
         throw new Error("No response data received from bot.");
       }
 
-      historyRef.current = [...historyRef.current, { type: "bot", post: response.data.bot }];
       return response.data;
     } catch (error) {
       console.error("Error fetching bot response: ", error);
@@ -56,34 +53,86 @@ function App() {
     }
   };
 
-
   const onSubmit = () => {
     if (input.trim() === "") return;
-    const oldQuery = historyRef.current.length > 0 ? historyRef.current[historyRef.current.length - 1].post : null;
-    fetchBotResponse(input, oldQuery)
+    updatePosts(input);
+    updatePosts("loading...", false, true);
+    setInput("");
+    fetchBotResponse(input)
       .then((res) => {
-        setPosts((prevState) => [...prevState, { type: "user", post: input, oldQuery: oldQuery }]);
-        setInput("");
-        setTimeout(() => {
-          setPosts((prevState) => [...prevState, { type: "bot", post: res.bot }]);
-        }, 200);
+        console.log(res.bot.trim());
+        updatePosts(res.bot.trim(), true);
       })
       .catch((error) => {
         console.error(error);
-        setPosts((prevState) => [...prevState, { type: "user", post: input, oldQuery: oldQuery }]);
-        setInput("");
-        setTimeout(() => {
-          setPosts((prevState) => [...prevState, { type: "bot", post: "Error fetching bot response." }]);
-        }, 200);
+        updatePosts("Error fetching bot response.", true);
       });
   };
 
+  const autoTypingBotResponse = (text) => {
+    let index = 0;
+    let interval = setInterval(() => {
+      if (index < text.length) {
+        setPosts((prevState) => {
+          let lastItem = prevState.length > 0 ? prevState.pop() : null;
+          if (lastItem && lastItem.type !== "bot") {
+            prevState.push({
+              type: "bot",
+              post: text.charAt(index - 1),
+            });
+          } else if (lastItem) {
+            prevState.push({
+              type: "bot",
+              post: lastItem.post + text.charAt(index - 1),
+            });
+          } else {
+            prevState.push({
+              type: "bot",
+              post: text.charAt(index - 1),
+            });
+          }
+          historyRef.current = [...prevState];
+          return [...prevState];
+        });
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 20);
+  };
+
+  const updatePosts = (post, isBot, isLoading) => {
+    if (isBot) {
+      autoTypingBotResponse(post);
+    } else {
+      setPosts((prevState) => {
+        const newPost = {
+          type: isLoading ? "loading" : "user",
+          post,
+        };
+        const newHistory = [...historyRef.current, newPost];
+        historyRef.current = newHistory;
+        return newHistory;
+      });
+    }
+  };
+
+  const onKeyUp = (e) => {
+    if (e.key === "Enter" || e.which === 13) {
+      onSubmit();
+    }
+  };
 
   const handleUndo = () => {
     const prevHistory = historyRef.current;
     if (prevHistory.length > 0) {
-      prevHistory.pop();
-      setPosts((prevState) => prevState.slice(0, -2));
+      const lastItem = prevHistory.pop();
+      setPosts((prevState) => {
+        const newState = [...prevState];
+        newState.pop();
+        return newState;
+      });
+      setInput(lastItem.post);
     }
   };
 
