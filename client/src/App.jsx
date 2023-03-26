@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
-
 import send from "./assets/send.svg";
 import user from "./assets/user.png";
 import bot from "./assets/bot.png";
@@ -55,21 +54,21 @@ function App() {
 
   const onSubmit = () => {
     if (input.trim() === "") return;
-    updatePosts(input, false, false, posts);
-    updatePosts("loading...", false, true, posts);
+    updatePosts(input);
+    updatePosts("loading...", false, true);
     setInput("");
     fetchBotResponse(input)
       .then((res) => {
         console.log(res.bot.trim());
-        updatePosts(res.bot.trim(), true, false, posts);
+        updatePosts(res.bot.trim(), true);
       })
       .catch((error) => {
         console.error(error);
-        updatePosts("Error fetching bot response.", true, false, posts);
+        updatePosts("Error fetching bot response.", true);
       });
   };
 
-  const autoTypingBotResponse = (text, oldHistory) => {
+  const autoTypingBotResponse = (text) => {
     let index = 0;
     let interval = setInterval(() => {
       if (index < text.length) {
@@ -91,8 +90,7 @@ function App() {
               post: text.charAt(index - 1),
             });
           }
-          const newHistory = [...oldHistory, ...prevState];
-          historyRef.current = newHistory;
+          historyRef.current = [...prevState];
           return [...prevState];
         });
         index++;
@@ -102,23 +100,21 @@ function App() {
     }, 20);
   };
 
-
-  const updatePosts = (post, isBot, isLoading, oldHistory) => {
+  const updatePosts = (post, isBot, isLoading) => {
     if (isBot) {
-      autoTypingBotResponse(post, oldHistory);
+      autoTypingBotResponse(post);
     } else {
       setPosts((prevState) => {
         const newPost = {
           type: isLoading ? "loading" : "user",
           post,
         };
-        const newHistory = [...oldHistory, newPost];
+        const newHistory = [...historyRef.current, newPost];
         historyRef.current = newHistory;
         return newHistory;
       });
     }
   };
-
 
   const onKeyUp = (e) => {
     if (e.key === "Enter" || e.which === 13) {
