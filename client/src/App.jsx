@@ -30,14 +30,13 @@ function App() {
   }, [posts]);
 
 
-  let history = []; // initialize empty array to hold user's input history
   const fetchBotResponse = async (input, oldQuery) => {
     try {
-      const query = `${oldQuery ? oldQuery + " " : ""}${input}`;
-      const chatHistory = history.join(", "); // summarize chat history
+      const query = oldQuery ? `${oldQuery} ${input}` : input;
+      const chatHistory = historyRef.current.map((post) => post.post).join(", ");
       const response = await axios.post(
         "https://chatgpt-ai-83yl.onrender.com",
-        { input: `${query}, ${chatHistory}` }, // concatenate current query with chat history
+        { input: `${query}, ${chatHistory}` },
         {
           headers: {
             "Content-Type": "application/json",
@@ -49,98 +48,42 @@ function App() {
         throw new Error("No response data received from bot.");
       }
 
-      history.push(query);
+      historyRef.current = [...historyRef.current, { type: "bot", post: response.data.bot }];
       return response.data;
     } catch (error) {
       console.error("Error fetching bot response: ", error);
       throw new Error("Could not fetch bot response.");
     }
   };
-  
+
 
   const onSubmit = () => {
     if (input.trim() === "") return;
     const oldQuery = historyRef.current.length > 0 ? historyRef.current[historyRef.current.length - 1].post : null;
-    updatePosts(input, false, false, oldQuery);
-    updatePosts("loading...", false, true);
-    setInput("");
     fetchBotResponse(input, oldQuery)
       .then((res) => {
-        console.log(res.bot.trim());
-        updatePosts(res.bot.trim(), true);
+        setPosts((prevState) => [...prevState, { type: "user", post: input, oldQuery: oldQuery }]);
+        setInput("");
+        setTimeout(() => {
+          setPosts((prevState) => [...prevState, { type: "bot", post: res.bot }]);
+        }, 200);
       })
       .catch((error) => {
         console.error(error);
-        updatePosts("Error fetching bot response.", true);
+        setPosts((prevState) => [...prevState, { type: "user", post: input, oldQuery: oldQuery }]);
+        setInput("");
+        setTimeout(() => {
+          setPosts((prevState) => [...prevState, { type: "bot", post: "Error fetching bot response." }]);
+        }, 200);
       });
   };
- 
-  const autoTypingBotResponse = (text) => {
-    let index = 0;
-    let interval = setInterval(() => {
-      if (index < text.length) {
-        setPosts((prevState) => {
-          let lastItem = prevState.length > 0 ? prevState.pop() : null;
-          if (lastItem && lastItem.type !== "bot") {
-            prevState.push({
-              type: "bot",
-              post: text.charAt(index - 1),
-            });
-          } else if (lastItem) {
-            prevState.push({
-              type: "bot",
-              post: lastItem.post + text.charAt(index - 1),
-            });
-          } else {
-            prevState.push({
-              type: "bot",
-              post: text.charAt(index - 1),
-            });
-          }
-          historyRef.current = [...prevState];
-          return [...prevState];
-        });
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 20);
-  };
 
-  
-  const updatePosts = (post, isBot, isLoading, oldQuery) => {
-    if (isBot) {
-      autoTypingBotResponse(post);
-    } else {
-      setPosts((prevState) => {
-        const newPost = {
-          type: isLoading ? "loading" : "user",
-          post,
-          oldQuery: oldQuery || null,
-        };
-        const newHistory = [...historyRef.current, newPost];
-        historyRef.current = newHistory;
-        return newHistory;
-      });
-    }
-  };
-
-  const onKeyUp = (e) => {
-    if (e.key === "Enter" || e.which === 13) {
-      onSubmit();
-    }
-  };
 
   const handleUndo = () => {
     const prevHistory = historyRef.current;
     if (prevHistory.length > 0) {
-      const lastItem = prevHistory.pop();
-      setPosts((prevState) => {
-        const newState = [...prevState];
-        newState.pop();
-        return newState;
-      });
-      setInput(lastItem.post);
+      prevHistory.pop();
+      setPosts((prevState) => prevState.slice(0, -2));
     }
   };
 
