@@ -5,6 +5,10 @@ import user from "./assets/user.png";
 import bot from "./assets/bot.png";
 import loadingIcon from "./assets/loader.svg";
 
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
+
+
 function App() {
   const [input, setInput] = useState("");
   const [posts, setPosts] = useState([]);
@@ -28,6 +32,19 @@ function App() {
     layout.scrollTop = layout.scrollHeight;
   }, [posts]);
 
+
+  const clearCacheAndHistory = () => {
+    window.location.reload(true);
+  };
+  const history = useHistory();
+  const handleLogout = () => {
+    // Perform any necessary logout logic
+    // Clear cache and history
+    clearCacheAndHistory();
+  };
+
+
+  
   // if error response data, try fixing the API key at server render
   const fetchBotResponse = async (input) => {
     try {
@@ -200,6 +217,9 @@ function App() {
 
         <div className="send-button" onClick={onSubmit}>
           <img src={send} />
+        </div>
+        <div>
+          <button onClick={handleLogout}>Clear</button>
         </div>
       </footer>
     </main>
