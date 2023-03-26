@@ -160,13 +160,12 @@ function App() {
                   <img src={loadingIcon} />
                 </div>
               ) : (
-                <div className="post">{post.post}</div>
-                
+                <>
+                  <div className="post">{post.post}</div>
                   {post.oldQuery && (
                     <div className="old-query">{post.oldQuery}</div>
                   )}
                 </>
-                        
               )}
             </div>
           ))}
