@@ -68,7 +68,7 @@ function App() {
         updatePosts("Error fetching bot response.", true);
       });
   };
-
+ 
   const autoTypingBotResponse = (text) => {
     let index = 0;
     let interval = setInterval(() => {
@@ -101,7 +101,6 @@ function App() {
     }, 20);
   };
 
-
   const updatePosts = (post, isBot, isLoading, oldQuery) => {
     if (isBot) {
       autoTypingBotResponse(post);
@@ -119,8 +118,6 @@ function App() {
     }
   };
 
-  
-  
   const onKeyUp = (e) => {
     if (e.key === "Enter" || e.which === 13) {
       onSubmit();
@@ -164,6 +161,12 @@ function App() {
                 </div>
               ) : (
                 <div className="post">{post.post}</div>
+                
+                  {post.oldQuery && (
+                    <div className="old-query">{post.oldQuery}</div>
+                  )}
+                </>
+                        
               )}
             </div>
           ))}
