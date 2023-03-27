@@ -101,7 +101,36 @@ function App() {
       });
   };
 
+  const updatePosts = (text, isBot = false, isLoader = false) => {
+    const newPosts = [
+      ...historyRef.current,
+      {
+        text,
+        isBot,
+        isLoader,
+      },
+    ];
+    setPosts(newPosts);
+    historyRef.current = newPosts;
+  };
 
+  const addChatHistory = (post, isBot, isLoading) => {
+    const newPost = {
+      type: isLoading ? "loading" : "user",
+      post,
+    };
+    const oldHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
+    const newHistory = oldHistory.concat(newPost);
+    localStorage.setItem("chatHistory", JSON.stringify(newHistory)); // save new chat history to local storage
+    return newHistory;
+  };
+
+  const onKeyUp = (e) => {
+    if (e.key === "Enter" || e.which === 13) {
+      onSubmit();
+    }
+  };
+  
   const autoTypingBotResponse = (text) => {
     let index = 0;
     let interval = setInterval(() => {
@@ -132,37 +161,6 @@ function App() {
         clearInterval(interval);
       }
     }, 20);
-  };
-
-
-  const addChatHistory = (post, isBot, isLoading) => {
-    const newPost = {
-      type: isLoading ? "loading" : "user",
-      post,
-    };
-    const oldHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
-    const newHistory = oldHistory.concat(newPost);
-    localStorage.setItem("chatHistory", JSON.stringify(newHistory)); // save new chat history to local storage
-    return newHistory;
-  };
-
-  const updatePosts = (text, isBot = false, isLoader = false) => {
-    const newPosts = [
-      ...historyRef.current,
-      {
-        text,
-        isBot,
-        isLoader,
-      },
-    ];
-    setPosts(newPosts);
-    historyRef.current = newPosts;
-  };
-  
-  const onKeyUp = (e) => {
-    if (e.key === "Enter" || e.which === 13) {
-      onSubmit();
-    }
   };
 
   const handleUndo = () => {
