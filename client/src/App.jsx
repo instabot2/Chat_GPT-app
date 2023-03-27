@@ -53,13 +53,11 @@ function App() {
     document.getElementById("overlay").style.display = "none";
     window.localStorage.setItem("imageDisplayed", "false");
   });
-
   const handleLogout = () => {
     // Perform any necessary logout logic
     // Clear cache and history
     clearCacheAndHistory();
   };
-
 
   // if error response data, try fixing the API key at server render
   const fetchBotResponse = async (input) => {
@@ -73,7 +71,7 @@ function App() {
       });
 
       const data = await response.json();
-
+      
       if (!data) {
         throw new Error("No response data received from bot.");
       }
