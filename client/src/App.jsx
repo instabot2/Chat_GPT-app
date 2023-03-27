@@ -63,14 +63,12 @@ function App() {
     clearCacheAndHistory();
   };
 
+  // if error response data, try fixing the API key at server render
   const fetchBotResponse = async (input) => {
     try {
-      const chatHistoryResponse = await axios.get("/api/chatHistory"); // replace with your API endpoint for chat history
-      const chatHistory = chatHistoryResponse.data; // assuming the response data is an array of chat history objects
-      // do something with chatHistory, e.g. set a state variable or pass it as a prop to a component
       const response = await axios.post(
         "https://chatgpt-ai-83yl.onrender.com",
-        { input, chatHistory }, // pass chat history data as a parameter to the bot API
+        { input },
         {
           headers: {
             "Content-Type": "application/json",
@@ -88,7 +86,6 @@ function App() {
       throw new Error("Could not fetch bot response.");
     }
   };
-  
 
 
   const onSubmit = () => {
