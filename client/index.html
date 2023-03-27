@@ -49,12 +49,10 @@
         localStorage.setItem("pageClosed", true);
         document.getElementById('overlay').style.display = 'block';
       }
-
       // Clear the flag when the user logs out or closes the browser
       function clearPageClosedFlag() {
         localStorage.removeItem("pageClosed");
       }
-
       // Attach the clearPageClosedFlag function to the unload event
       window.addEventListener("unload", clearPageClosedFlag);
     </script>
