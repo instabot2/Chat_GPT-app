@@ -31,8 +31,7 @@ function App() {
     const layout = document.querySelector(".layout");
     layout.scrollTop = layout.scrollHeight;
   }, [posts]);
-
-
+  
   const clearCacheAndHistory = () => {
     const confirmed = confirm("Clear cache and history?");
     if (confirmed) {
@@ -63,24 +62,25 @@ function App() {
     clearCacheAndHistory();
   };
 
+
   // if error response data, try fixing the API key at server render
   const fetchBotResponse = async (input) => {
     try {
-      const response = await axios.post(
-        "https://chatgpt-ai-83yl.onrender.com",
-        { input },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch("https://chatgpt-ai-83yl.onrender.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ input }),
+      });
 
-      if (!response.data) {
+      const data = await response.json();
+
+      if (!data) {
         throw new Error("No response data received from bot.");
       }
 
-      return response.data;
+      return data;
     } catch (error) {
       console.error("Error fetching bot response: ", error);
       throw new Error("Could not fetch bot response.");
@@ -148,16 +148,18 @@ function App() {
     return newHistory;
   };
 
-  const updatePosts = (post, isBot, isLoading) => {
-    if (isBot) {
-      autoTypingBotResponse(post);
-    } else {
-      const newHistory = addChatHistory(post, isBot, isLoading);
-      setPosts(newHistory);
-      return newHistory;
-    }
+  const updatePosts = (text, isBot = false, isLoader = false) => {
+    const newPosts = [
+      ...historyRef.current,
+      {
+        text,
+        isBot,
+        isLoader,
+      },
+    ];
+    setPosts(newPosts);
+    historyRef.current = newPosts;
   };
- 
   
   const onKeyUp = (e) => {
     if (e.key === "Enter" || e.which === 13) {
