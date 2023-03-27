@@ -87,22 +87,42 @@ function App() {
     }
   };
 
-
   const onSubmit = () => {
     if (input.trim() === "") return;
-    updatePosts(input);
-    updatePosts("loading...", false, true);
+    const newPost = {
+      type: "user",
+      post: input.trim(),
+    };
+    const chatHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
+    const newHistory = [...chatHistory, newPost];
+    localStorage.setItem("chatHistory", JSON.stringify(newHistory));
+    setPosts(newHistory);
     setInput("");
+    updatePosts("loading...", false, true);
     fetchBotResponse(input)
       .then((res) => {
         console.log(res.bot.trim());
-        updatePosts(res.bot.trim(), true);
+        const newBotPost = {
+          type: "bot",
+          post: res.bot.trim(),
+        };
+        const newHistory = [...newHistory, newBotPost];
+        localStorage.setItem("chatHistory", JSON.stringify(newHistory));
+        setPosts(newHistory);
       })
       .catch((error) => {
         console.error(error);
-        updatePosts("Error fetching bot response.", true);
+        const newBotPost = {
+          type: "bot",
+          post: "Error fetching bot response.",
+        };
+        const newHistory = [...newHistory, newBotPost];
+        localStorage.setItem("chatHistory", JSON.stringify(newHistory));
+        setPosts(newHistory);
       });
   };
+
+ 
 
   const autoTypingBotResponse = (text) => {
     let index = 0;
