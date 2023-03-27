@@ -136,35 +136,22 @@ function App() {
     }, 20);
   };
 
+
   const updatePosts = (post, isBot, isLoading) => {
-    setPosts((prevState) => {
-      const newPost = {
-        type: isLoading ? "loading" : "user",
-        post,
-      };
-
-      const lastPost = prevState[prevState.length - 1];
-
-      // If last post is from user and the new post is from the user
-      if (lastPost && lastPost.type === "user" && newPost.type === "user") {
-        // Concatenate the new post to the last post
-        const concatenatedPost = `${lastPost.post}\n${newPost.post}`;
-        // Replace the last post with the concatenated post
-        prevState[prevState.length - 1] = { ...lastPost, post: concatenatedPost };
-      } else {
-        // If the last post is not from the user or the new post is not from the user,
-        // add the new post to the array of posts
-        prevState.push(newPost);
-      }
-
-      // Save the chat history to local storage
-      localStorage.setItem("chatHistory", JSON.stringify(prevState));
-
-      // Set the historyRef.current to the new state
-      historyRef.current = [...prevState];
-
-      return [...prevState];
-    });
+    if (isBot) {
+      autoTypingBotResponse(post);
+    } else {
+      setPosts((prevState) => {
+        const newPost = {
+          type: isLoading ? "loading" : "user",
+          post,
+        };
+        const oldHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
+        const newHistory = oldHistory.concat(newPost);
+        localStorage.setItem("chatHistory", JSON.stringify(newHistory)); // save new chat history to local storage
+        return newHistory;
+      });
+    }
   };
 
   
