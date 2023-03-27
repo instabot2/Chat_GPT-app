@@ -40,11 +40,25 @@
     
     <div id="root"></div>
     <script type="module">
-      window.onload = function() {
+      // Check if the page has been closed before
+      if (localStorage.getItem("pageClosed")) {
+        // If so, hide the overlay
+        document.getElementById('overlay').style.display = 'none';
+      } else {
+        // If not, show the overlay and set the flag
+        localStorage.setItem("pageClosed", true);
         document.getElementById('overlay').style.display = 'block';
       }
+
+      // Clear the flag when the user logs out or closes the browser
+      function clearPageClosedFlag() {
+        localStorage.removeItem("pageClosed");
+      }
+
+      // Attach the clearPageClosedFlag function to the unload event
+      window.addEventListener("unload", clearPageClosedFlag);
     </script>
     <script type="module" src="/src/main.jsx"></script>
-
   </body>
 </html>
+
