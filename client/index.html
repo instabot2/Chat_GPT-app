@@ -34,30 +34,24 @@
   </head>
   
   <body>
-
-    <div id="overlay" onclick="this.style.display = 'none'">
+    <div id="overlay" onclick="hideOverlay()">
       <img src="public/rotater.gif" alt="Rotating gear icon" />
     </div>
-    <script type="module">
-      // Check if the page has been closed before
-      if (localStorage.getItem("pageClosed")) {
-        // If so, hide the overlay
-        document.getElementById('overlay').style.display = 'none';
-      } else {
-        // If not, show the overlay and set the flag
-        localStorage.setItem("pageClosed", true);
-        document.getElementById('overlay').style.display = 'block';
-      }
-      // Clear the flag when the user logs out or closes the browser
-      function clearPageClosedFlag() {
-        localStorage.removeItem("pageClosed");
-      }
-      // Attach the clearPageClosedFlag function to the unload event
-      window.addEventListener("unload", clearPageClosedFlag);
-    </script>  
     
-    <div id="root"></div> 
+    <div id="root"></div>
+    <script type="module">
+      function hideOverlay() {
+        document.getElementById('overlay').style.display = 'none';
+        localStorage.setItem('imageClosed', true);
+      }
+
+      window.onload = function() {
+        const imageClosed = localStorage.getItem('imageClosed');
+        if (!imageClosed) {
+          document.getElementById('overlay').style.display = 'block';
+        }
+      }
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
-
