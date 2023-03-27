@@ -136,6 +136,7 @@ function App() {
     }, 20);
   };
 
+
   const updatePosts = (post, isBot, isLoading) => {
     if (isBot) {
       autoTypingBotResponse(post);
@@ -146,6 +147,7 @@ function App() {
           post,
         };
         const newHistory = [...historyRef.current, newPost];
+        localStorage.setItem("chatHistory", JSON.stringify(newHistory)); // save new chat history to local storage
         historyRef.current = newHistory;
         return newHistory;
       });
