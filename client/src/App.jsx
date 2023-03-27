@@ -34,8 +34,11 @@ function App() {
 
 
   const clearCacheAndHistory = () => {
-    window.location.reload(true);
-    window.localStorage.clear();
+  const confirmed = window.confirm("Clear cache and history?");
+    if (confirmed) {
+      window.location.reload(true);
+      window.localStorage.clear();
+    }
   }
   const handleLogout = () => {
     // Perform any necessary logout logic
