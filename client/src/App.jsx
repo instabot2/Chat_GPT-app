@@ -98,31 +98,38 @@ function App() {
     localStorage.setItem("chatHistory", JSON.stringify(newHistory));
     setPosts(newHistory);
     setInput("");
-    updatePosts("loading...", false, true);
-    fetchBotResponse(input)
-      .then((res) => {
-        console.log(res.bot.trim());
-        const newBotPost = {
-          type: "bot",
-          post: res.bot.trim(),
-        };
-        const newHistory = [...newHistory, newBotPost];
-        localStorage.setItem("chatHistory", JSON.stringify(newHistory));
-        setPosts(newHistory);
-      })
-      .catch((error) => {
-        console.error(error);
-        const newBotPost = {
-          type: "bot",
-          post: "Error fetching bot response.",
-        };
-        const newHistory = [...newHistory, newBotPost];
-        localStorage.setItem("chatHistory", JSON.stringify(newHistory));
-        setPosts(newHistory);
-      });
+    const existingBotPost = chatHistory.find(
+      (post) => post.type === "bot" && post.post === input.trim()
+    );
+    if (existingBotPost) {
+      const newHistory = [...newHistory, existingBotPost];
+      setPosts(newHistory);
+    } else {
+      updatePosts("loading...", false, true);
+      fetchBotResponse(input)
+        .then((res) => {
+          console.log(res.bot.trim());
+          const newBotPost = {
+            type: "bot",
+            post: res.bot.trim(),
+          };
+          const newHistory = [...newHistory, newBotPost];
+          localStorage.setItem("chatHistory", JSON.stringify(newHistory));
+          setPosts(newHistory);
+        })
+        .catch((error) => {
+          console.error(error);
+          const newBotPost = {
+            type: "bot",
+            post: "Error fetching bot response.",
+          };
+          const newHistory = [...newHistory, newBotPost];
+          localStorage.setItem("chatHistory", JSON.stringify(newHistory));
+          setPosts(newHistory);
+        });
+    }
   };
 
- 
 
   const autoTypingBotResponse = (text) => {
     let index = 0;
