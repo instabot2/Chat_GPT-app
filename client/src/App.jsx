@@ -63,13 +63,14 @@ function App() {
     clearCacheAndHistory();
   };
 
-  
-  // if error response data, try fixing the API key at server render
   const fetchBotResponse = async (input) => {
     try {
+      const chatHistoryResponse = await axios.get("/api/chatHistory"); // replace with your API endpoint for chat history
+      const chatHistory = chatHistoryResponse.data; // assuming the response data is an array of chat history objects
+      // do something with chatHistory, e.g. set a state variable or pass it as a prop to a component
       const response = await axios.post(
         "https://chatgpt-ai-83yl.onrender.com",
-        { input },
+        { input, chatHistory }, // pass chat history data as a parameter to the bot API
         {
           headers: {
             "Content-Type": "application/json",
@@ -87,6 +88,8 @@ function App() {
       throw new Error("Could not fetch bot response.");
     }
   };
+  
+
 
   const onSubmit = () => {
     if (input.trim() === "") return;
@@ -137,24 +140,27 @@ function App() {
   };
 
 
+  const addChatHistory = (post, isBot, isLoading) => {
+    const newPost = {
+      type: isLoading ? "loading" : "user",
+      post,
+    };
+    const oldHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
+    const newHistory = oldHistory.concat(newPost);
+    localStorage.setItem("chatHistory", JSON.stringify(newHistory)); // save new chat history to local storage
+    return newHistory;
+  };
+
   const updatePosts = (post, isBot, isLoading) => {
     if (isBot) {
       autoTypingBotResponse(post);
     } else {
-      setPosts((prevState) => {
-        const newPost = {
-          type: isLoading ? "loading" : "user",
-          post,
-        };
-        const oldHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
-        const newHistory = oldHistory.concat(newPost);
-        localStorage.setItem("chatHistory", JSON.stringify(newHistory)); // save new chat history to local storage
-        return newHistory;
-      });
+      const newHistory = addChatHistory(post, isBot, isLoading);
+      setPosts(newHistory);
+      return newHistory;
     }
   };
-
-  
+ 
   
   const onKeyUp = (e) => {
     if (e.key === "Enter" || e.which === 13) {
