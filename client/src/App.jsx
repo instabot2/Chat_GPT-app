@@ -36,12 +36,25 @@ function App() {
   const clearCacheAndHistory = () => {
     const confirmed = confirm("Clear cache and history?");
     if (confirmed) {
+      window.localStorage.setItem("imageDisplayed", "false");
       window.location.reload(true);
       window.localStorage.clear();
       window.sessionStorage.clear();
       window.history.replaceState(null, null, window.location.href);
     }
-  }
+  };
+
+  window.addEventListener("load", () => {
+    const imageDisplayed = window.localStorage.getItem("imageDisplayed");
+    if (imageDisplayed !== "true") {
+      document.getElementById("overlay").style.display = "block";
+      window.localStorage.setItem("imageDisplayed", "true");
+    }
+  });
+
+  document.getElementById("overlay").addEventListener("click", () => {
+    document.getElementById("overlay").style.display = "none";
+  });
 
   const handleLogout = () => {
     // Perform any necessary logout logic
