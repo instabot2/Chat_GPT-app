@@ -98,20 +98,22 @@ function App() {
         updatePosts("Error fetching bot response.", true);
       });
   };
-
-  const updatePosts = (text, isBot = false, isLoader = false) => {
-    const newPosts = [
-      ...historyRef.current,
-      {
-        text,
-        isBot,
-        isLoader,
-      },
-    ];
-    setPosts(newPosts);
-    historyRef.current = newPosts;
+  
+  const updatePosts = (post, isBot, isLoading) => {
+    if (isBot) {
+      autoTypingBotResponse(post);
+    } else {
+      setPosts((prevState) => {
+        const newPost = {
+          type: isLoading ? "loading" : "user",
+          post,
+        };
+        historyRef.current = [...historyRef.current, newPost];
+        return [...prevState, newPost];
+      });
+    }
   };
-
+  
   const addChatHistory = (post, isBot, isLoading) => {
     const newPost = {
       type: isLoading ? "loading" : "user",
