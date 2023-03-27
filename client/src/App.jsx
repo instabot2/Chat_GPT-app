@@ -43,15 +43,15 @@ function App() {
       window.history.replaceState(null, null, window.location.href);
     }
   };
-
   window.addEventListener("load", () => {
     const imageDisplayed = window.localStorage.getItem("imageDisplayed");
     if (imageDisplayed !== "true") {
       document.getElementById("overlay").style.display = "block";
       window.localStorage.setItem("imageDisplayed", "true");
+    } else {
+      document.getElementById("overlay").style.display = "none";
     }
   });
-
   document.getElementById("overlay").addEventListener("click", () => {
     document.getElementById("overlay").style.display = "none";
     window.localStorage.setItem("imageDisplayed", "false");
