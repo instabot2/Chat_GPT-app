@@ -32,12 +32,12 @@
       }
     </style>
   </head>
-  
+
   <body>
     <div id="overlay" onclick="hideOverlay()">
       <img src="public/rotater.gif" alt="Rotating gear icon" />
     </div>
-    
+
     <div id="root"></div>
     <script type="module">
       function hideOverlay() {
@@ -51,6 +51,9 @@
           document.getElementById('overlay').style.display = 'block';
         }
       }
+      window.addEventListener('beforeunload', function() {
+        localStorage.removeItem('imageClosed');
+      });
     </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
