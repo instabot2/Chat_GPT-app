@@ -54,6 +54,7 @@ function App() {
 
   document.getElementById("overlay").addEventListener("click", () => {
     document.getElementById("overlay").style.display = "none";
+    window.localStorage.setItem("imageDisplayed", "false");
   });
 
   const handleLogout = () => {
