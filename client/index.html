@@ -34,11 +34,10 @@
   </head>
   
   <body>
+
     <div id="overlay" onclick="this.style.display = 'none'">
       <img src="public/rotater.gif" alt="Rotating gear icon" />
     </div>
-    
-    <div id="root"></div>
     <script type="module">
       // Check if the page has been closed before
       if (localStorage.getItem("pageClosed")) {
@@ -55,7 +54,9 @@
       }
       // Attach the clearPageClosedFlag function to the unload event
       window.addEventListener("unload", clearPageClosedFlag);
-    </script>
+    </script>  
+    
+    <div id="root"></div> 
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
