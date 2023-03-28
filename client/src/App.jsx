@@ -11,12 +11,6 @@ function App() {
   const [input, setInput] = useState("");
   const [posts, setPosts] = useState([]);
   const historyRef = useRef([]);
-
-  // Load chat history from local storage
-  const initialHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
-  const [posts, setPosts] = useState(initialHistory);
-  const historyRef = useRef(initialHistory);
-  
   
   function displayChatHistory() {
     fetch('/api/chathistory')
