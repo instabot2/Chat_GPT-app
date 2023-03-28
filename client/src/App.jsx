@@ -6,7 +6,7 @@ import user from "./assets/user.png";
 import bot from "./assets/bot.png";
 import loadingIcon from "./assets/loader.svg";
 
-//port React from 'react';
+//import React from 'react';
 
 function App() {
   const [input, setInput] = useState("");
@@ -73,7 +73,6 @@ function App() {
       });
   };
   
-
   const autoTypingBotResponse = (text) => {
     let index = 0;
     let interval = setInterval(() => {
@@ -106,8 +105,6 @@ function App() {
     }, 20);
   };
 
-  
-  
   const updatePosts = (post, isBot, isLoading) => {
     if (isBot) {
       autoTypingBotResponse(post);
@@ -123,7 +120,6 @@ function App() {
       });
     }
   };
-  
   
   const onKeyUp = (e) => {
     if (e.key === "Enter" || e.which === 13) {
@@ -149,7 +145,6 @@ function App() {
     layout.scrollTop = layout.scrollHeight;
   };
 
-  
   const clearCacheAndHistory = () => {
     const confirmed = confirm("Clear cache and history?");
     if (confirmed) {
