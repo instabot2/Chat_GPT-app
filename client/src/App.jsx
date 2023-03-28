@@ -7,6 +7,8 @@ import bot from "./assets/bot.png";
 import loadingIcon from "./assets/loader.svg";
 import React from 'react';
 
+import ChatHistory from './ChatHistory';
+
 function App() {
   const [input, setInput] = useState("");
   //const [posts, setPosts] = useState([]);
@@ -222,6 +224,10 @@ function App() {
               )}
             </div>
           ))}
+        </div>
+        <div>
+           <h1>My Chat App</h1>
+           <ChatHistory />
         </div>
       </section>
       <footer>
