@@ -29,7 +29,27 @@ function App() {
     const layout = document.querySelector(".layout");
     layout.scrollTop = layout.scrollHeight;
   }, [posts]);
-  
+
+  useEffect(() => {
+    // fetch chat history from server
+    fetch('/api/chathistory')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch chat history');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setPosts(data);
+        historyRef.current = data;
+      })
+      .catch(error => {
+        console.error('Error fetching chat history:', error.message);
+        alert('Failed to fetch chat history. Please try again later.');
+      });
+  }, []);
+
+
   const clearCacheAndHistory = () => {
     const confirmed = confirm("Clear cache and history?");
     if (confirmed) {
