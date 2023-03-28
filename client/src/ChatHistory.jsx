@@ -5,7 +5,7 @@ function ChatHistory() {
 
   useEffect(() => {
     async function fetchChatHistory() {
-      const response = await fetch('/api/chat-history');
+      const response = await fetch('/api/chathistory');
       const data = await response.json();
       setChatHistory(data);
     }
@@ -24,5 +24,3 @@ function ChatHistory() {
     </div>
   );
 }
-
-export default ChatHistory;
