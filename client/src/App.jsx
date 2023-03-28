@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+
 import send from "./assets/send.svg";
-import trash from "./assets/trash.png";
 import user from "./assets/user.png";
 import bot from "./assets/bot.png";
 import loadingIcon from "./assets/loader.svg";
-
 
 function App() {
   const [input, setInput] = useState("");
@@ -201,10 +200,8 @@ function App() {
         />
 
         <div className="send-button" onClick={onSubmit}>
-          <img src={send} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="#" onClick={handleLogout}><img src={trash} alt="trash" height="14"/></a>
+          <img src={send} />
         </div>
-
       </footer>
     </main>
   );
