@@ -6,7 +6,7 @@ import user from "./assets/user.png";
 import bot from "./assets/bot.png";
 import loadingIcon from "./assets/loader.svg";
 
-import React from 'react';
+//port React from 'react';
 
 function App() {
   const [input, setInput] = useState("");
@@ -30,7 +30,6 @@ function App() {
     const layout = document.querySelector(".layout");
     layout.scrollTop = layout.scrollHeight;
   }, [posts]);
-  
 
   
   // if error response data, try fixing the API key at server render
@@ -58,7 +57,6 @@ function App() {
     }
   };
 
-  
   const onSubmit = () => {
     if (input.trim() === "") return;
     updatePosts(input);
@@ -75,38 +73,6 @@ function App() {
       });
   };
   
-  const updatePosts = (post, isBot, isLoading) => {
-    if (isBot) {
-      autoTypingBotResponse(post);
-    } else {
-      setPosts((prevState) => {
-        const newPost = {
-          type: isLoading ? "loading" : "user",
-          post,
-        };
-        historyRef.current = [...historyRef.current, newPost];
-        return [...prevState, newPost];
-      });
-    }
-  };
-  
-  const addChatHistory = (post, isBot, isLoading) => {
-    const newPost = {
-      type: isLoading ? "loading" : "user",
-      post,
-    };
-    const oldHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
-    const newHistory = oldHistory.concat(newPost);
-    localStorage.setItem("chatHistory", JSON.stringify(newHistory)); // save new chat history to local storage
-    return newHistory;
-  };
-
-  const onKeyUp = (e) => {
-    if (e.key === "Enter" || e.which === 13) {
-      onSubmit();
-    }
-  };
-   
   const autoTypingBotResponse = (text) => {
     let index = 0;
     let newPosts = [...posts];
@@ -137,7 +103,28 @@ function App() {
     }, 20);
   };
 
+  const updatePosts = (post, isBot, isLoading) => {
+    if (isBot) {
+      autoTypingBotResponse(post);
+    } else {
+      setPosts((prevState) => {
+        const newPost = {
+          type: isLoading ? "loading" : "user",
+          post,
+        };
+        const newHistory = [...historyRef.current, newPost];
+        historyRef.current = newHistory;
+        return newHistory;
+      });
+    }
+  };
   
+  
+  const onKeyUp = (e) => {
+    if (e.key === "Enter" || e.which === 13) {
+      onSubmit();
+    }
+  }; 
   
   const handleUndo = () => {
     const prevHistory = historyRef.current;
