@@ -5,6 +5,7 @@ import trash from "./assets/trash.png";
 import user from "./assets/user.png";
 import bot from "./assets/bot.png";
 import loadingIcon from "./assets/loader.svg";
+
 import React from 'react';
 
 function App() {
@@ -30,34 +31,7 @@ function App() {
     layout.scrollTop = layout.scrollHeight;
   }, [posts]);
   
-  const clearCacheAndHistory = () => {
-    const confirmed = confirm("Clear cache and history?");
-    if (confirmed) {
-      window.localStorage.setItem("imageDisplayed", "false");
-      window.location.reload(true);
-      window.localStorage.clear();
-      window.sessionStorage.clear();
-      window.history.replaceState(null, null, window.location.href);
-    }
-  };
-  window.addEventListener("load", () => {
-    const imageDisplayed = window.localStorage.getItem("imageDisplayed");
-    if (imageDisplayed !== "true") {
-      document.getElementById("overlay").style.display = "block";
-      window.localStorage.setItem("imageDisplayed", "true");
-    } else {
-      document.getElementById("overlay").style.display = "none";
-    }
-  });
-  document.getElementById("overlay").addEventListener("click", () => {
-    document.getElementById("overlay").style.display = "none";
-    window.localStorage.setItem("imageDisplayed", "false");
-  });
-  const handleLogout = () => {
-    // Perform any necessary logout logic
-    // Clear cache and history
-    clearCacheAndHistory();
-  };
+
   
   // if error response data, try fixing the API key at server render
   const fetchBotResponse = async (input) => {
@@ -184,6 +158,34 @@ function App() {
   };
 
   
+  const clearCacheAndHistory = () => {
+    const confirmed = confirm("Clear cache and history?");
+    if (confirmed) {
+      window.localStorage.setItem("imageDisplayed", "false");
+      window.location.reload(true);
+      window.localStorage.clear();
+      window.sessionStorage.clear();
+      window.history.replaceState(null, null, window.location.href);
+    }
+  };
+  window.addEventListener("load", () => {
+    const imageDisplayed = window.localStorage.getItem("imageDisplayed");
+    if (imageDisplayed !== "true") {
+      document.getElementById("overlay").style.display = "block";
+      window.localStorage.setItem("imageDisplayed", "true");
+    } else {
+      document.getElementById("overlay").style.display = "none";
+    }
+  });
+  document.getElementById("overlay").addEventListener("click", () => {
+    document.getElementById("overlay").style.display = "none";
+    window.localStorage.setItem("imageDisplayed", "false");
+  });
+  const handleLogout = () => {
+    // Perform any necessary logout logic
+    // Clear cache and history
+    clearCacheAndHistory();
+  };
   
   return (
     <main className="chatGPT-app">
