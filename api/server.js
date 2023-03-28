@@ -47,27 +47,13 @@ app.post("/", async (req, res) => {
   }
 });
 
-//app.get("/api/chathistory", async (req, res) => {
-//  try {
-//    res.status(200).send(chatHistory);
-//  } catch (error) {
-//    console.error("Error getting chat history: ", error);
-//    res.status(500).send("Could not get chat history");
-//  }
-//});
-
-
-const express = require('express');
-const app = express();
-// Assume that chatHistory is an array of chat messages
-app.get('/api/chat-history', (req, res) => {
+app.get("/api/chathistory", async (req, res) => {
   try {
-    res.status(200).json(chatHistory);
+    res.status(200).send(chatHistory);
   } catch (error) {
-    console.error('Error getting chat history:', error);
-    res.status(500).send('Could not get chat history');
+    console.error("Error getting chat history: ", error);
+    res.status(500).send("Could not get chat history");
   }
 });
-
 
 app.listen(4000, () => console.log("Server is running on port 4000"));
