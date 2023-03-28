@@ -20,7 +20,7 @@ function App() {
         if (response.ok) {
           const chatHistory = await response.json();
           setPosts(chatHistory);
-          historyRef.current = chatHistory;
+          setHistory(chatHistory);
         } else {
           console.error('Failed to fetch chat history');
         }
@@ -33,14 +33,33 @@ function App() {
 
   useEffect(() => {
     // save chat history to local storage
-    localStorage.setItem("chatHistory", JSON.stringify(historyRef.current));
+    localStorage.setItem("chatHistory", JSON.stringify(history));
 
     // scroll to bottom of div when posts update
     const layout = document.querySelector(".layout");
     layout.scrollTop = layout.scrollHeight;
   }, [posts]);
 
-  
+  const [history, setHistory] = useState([]);
+
+  useEffect(() => {
+    const fetchChatHistory = async () => {
+      try {
+        const response = await fetch('/api/chat-history');
+        if (response.ok) {
+          const chatHistory = await response.json();
+          setHistory(chatHistory);
+        } else {
+          console.error('Failed to fetch chat history');
+        }
+      } catch (error) {
+        console.error('Error fetching chat history:', error);
+      }
+    };
+    fetchChatHistory();
+  }, []);
+
+ 
   // if error response data, try fixing the API key at server render
   const fetchBotResponse = async (input) => {
     try {
