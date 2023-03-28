@@ -14,12 +14,21 @@ function App() {
   const historyRef = useRef([]);
 
   useEffect(() => {
-    // retrieve chat history from local storage
-    const chatHistory = JSON.parse(localStorage.getItem("chatHistory"));
-    if (chatHistory && chatHistory.length > 0) {
-      setPosts(chatHistory);
-      historyRef.current = chatHistory;
-    }
+    const fetchChatHistory = async () => {
+      try {
+        const response = await fetch('/api/chat-history');
+        if (response.ok) {
+          const chatHistory = await response.json();
+          setPosts(chatHistory);
+          historyRef.current = chatHistory;
+        } else {
+          console.error('Failed to fetch chat history');
+        }
+      } catch (error) {
+        console.error('Error fetching chat history:', error);
+      }
+    };
+    fetchChatHistory();
   }, []);
 
   useEffect(() => {
