@@ -12,6 +12,12 @@ function App() {
   const [posts, setPosts] = useState([]);
   const historyRef = useRef([]);
 
+  // Load chat history from local storage
+  const initialHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
+  const [posts, setPosts] = useState(initialHistory);
+  const historyRef = useRef(initialHistory);
+  
+  
   function displayChatHistory() {
     fetch('/api/chathistory')
       .then(response => response.json())
@@ -91,8 +97,10 @@ function App() {
           type: isLoading ? "loading" : "user",
           post,
         };
-        historyRef.current = [...historyRef.current, newPost];
-        return [...prevState, newPost];
+        const newHistory = [...prevState, newPost];
+        historyRef.current = newHistory;
+        localStorage.setItem("chatHistory", JSON.stringify(newHistory));
+        return newHistory;
       });
     }
   };
@@ -108,6 +116,8 @@ function App() {
     return newHistory;
   };
 
+  
+  
   const onKeyUp = (e) => {
     if (e.key === "Enter" || e.which === 13) {
       onSubmit();
