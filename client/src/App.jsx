@@ -225,10 +225,7 @@ function App() {
             </div>
           ))}
         </div>
-        <div>
-           <h1>My Chat App</h1>
-           <ChatHistory />
-        </div>
+
       </section>
       <footer>
         <textarea
