@@ -7,8 +7,6 @@ import bot from "./assets/bot.png";
 import loadingIcon from "./assets/loader.svg";
 import React from 'react';
 
-//import ChatHistory from './src/ChatHistory';
-
 function App() {
   const [input, setInput] = useState("");
   //const [posts, setPosts] = useState([]);
