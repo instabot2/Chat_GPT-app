@@ -42,13 +42,10 @@ function App() {
         },
         body: JSON.stringify({ input }),
       });
-
-      const data = await response.json();
-      
+      const data = await response.json();  
       if (!data) {
         throw new Error("No response data received from bot.");
       }
-
       return data;
     } catch (error) {
       console.error("Error fetching bot response: ", error);
