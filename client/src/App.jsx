@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import send from "./assets/send.svg";
-import trash from "./assets/trash.png";
 import user from "./assets/user.png";
 import bot from "./assets/bot.png";
 import loadingIcon from "./assets/loader.svg";
-//port React from 'react';
+
 
 function App() {
   const [input, setInput] = useState("");
@@ -136,7 +135,7 @@ function App() {
       setInput(lastItem.post);
     }
   };
-  
+
   return (
     <main className="chatGPT-app">
       <section className="chat-container">
