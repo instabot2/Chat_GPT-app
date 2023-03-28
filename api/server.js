@@ -3,8 +3,6 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import { Configuration, OpenAIApi } from "openai";
 
-import fetch from 'node-fetch';
-
 dotenv.config();
 
 const app = express();
