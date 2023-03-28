@@ -73,36 +73,41 @@ function App() {
       });
   };
   
+
   const autoTypingBotResponse = (text) => {
     let index = 0;
-    let newPosts = [...posts];
     let interval = setInterval(() => {
       if (index < text.length) {
-        let lastItem = newPosts.length > 0 ? newPosts.pop() : null;
-        if (lastItem && lastItem.type !== "bot") {
-          newPosts.push({
-            type: "bot",
-            post: text.charAt(index - 1),
-          });
-        } else if (lastItem) {
-          newPosts.push({
-            type: "bot",
-            post: lastItem.post + text.charAt(index - 1),
-          });
-        } else {
-          newPosts.push({
-            type: "bot",
-            post: text.charAt(index - 1),
-          });
-        }
+        setPosts((prevState) => {
+          let lastItem = prevState.length > 0 ? prevState.pop() : null;
+          if (lastItem && lastItem.type !== "bot") {
+            prevState.push({
+              type: "bot",
+              post: text.charAt(index - 1),
+            });
+          } else if (lastItem) {
+            prevState.push({
+              type: "bot",
+              post: lastItem.post + text.charAt(index - 1),
+            });
+          } else {
+            prevState.push({
+              type: "bot",
+              post: text.charAt(index - 1),
+            });
+          }
+          historyRef.current = [...prevState];
+          return [...prevState];
+        });
         index++;
       } else {
         clearInterval(interval);
-        setPosts(newPosts);
       }
     }, 20);
   };
 
+  
+  
   const updatePosts = (post, isBot, isLoading) => {
     if (isBot) {
       autoTypingBotResponse(post);
