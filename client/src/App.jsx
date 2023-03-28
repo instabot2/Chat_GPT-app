@@ -21,7 +21,7 @@ function App() {
       })
       .catch(error => {
         console.error('Error fetching chat history:', error.message);
-        alert('Failed to fetch chat history. Please try again later.');
+        //alert('Failed to fetch chat history. Please try again later.');
       });
   }
 
