@@ -68,10 +68,6 @@ app.get('/api/chat-history', (req, res) => {
     res.status(500).send('Could not get chat history');
   }
 });
-// Start the server
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
 
-//app.listen(4000, () => console.log("Server is running on port 4000"));
+
+app.listen(4000, () => console.log("Server is running on port 4000"));
