@@ -12,33 +12,9 @@ function App() {
   const [posts, setPosts] = useState([]);
   const historyRef = useRef([]);
 
-  useEffect(() => {
-    // retrieve chat history from local storage
-    const chatHistory = JSON.parse(localStorage.getItem("chatHistory"));
-    if (chatHistory && chatHistory.length > 0) {
-      setPosts(chatHistory);
-      historyRef.current = chatHistory;
-    }
-  }, []);
-
-  useEffect(() => {
-    // save chat history to local storage
-    localStorage.setItem("chatHistory", JSON.stringify(historyRef.current));
-
-    // scroll to bottom of div when posts update
-    const layout = document.querySelector(".layout");
-    layout.scrollTop = layout.scrollHeight;
-  }, [posts]);
-
-  useEffect(() => {
-    // fetch chat history from server
+  function displayChatHistory() {
     fetch('/api/chathistory')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch chat history');
-        }
-        return response.json();
-      })
+      .then(response => response.json())
       .then(data => {
         setPosts(data);
         historyRef.current = data;
@@ -47,9 +23,27 @@ function App() {
         console.error('Error fetching chat history:', error.message);
         alert('Failed to fetch chat history. Please try again later.');
       });
+  }
+
+  useEffect(() => {
+    const chatHistory = JSON.parse(localStorage.getItem('chatHistory'));
+    if (chatHistory && chatHistory.length > 0) {
+      setPosts(chatHistory);
+      historyRef.current = chatHistory;
+    }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem('chatHistory', JSON.stringify(historyRef.current));
+    const layout = document.querySelector('.layout');
+    layout.scrollTop = layout.scrollHeight;
 
+    displayChatHistory(); // call the function here
+  }, [posts]);
+
+
+
+  
   const clearCacheAndHistory = () => {
     const confirmed = confirm("Clear cache and history?");
     if (confirmed) {
