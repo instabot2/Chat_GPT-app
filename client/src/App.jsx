@@ -11,7 +11,6 @@ function App() {
   const [input, setInput] = useState("");
   //const [posts, setPosts] = useState([]);
   //const historyRef = useRef([]);
-  const [input, setInput] = useState("");
   const initialHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
   const [posts, setPosts] = useState(initialHistory);
   const historyRef = useRef(initialHistory);  
@@ -86,6 +85,7 @@ function App() {
       });
   };
   
+
   const updatePosts = (post, isBot, isLoading) => {
     if (isBot) {
       autoTypingBotResponse(post);
@@ -97,8 +97,8 @@ function App() {
         };
         const newHistory = [...prevState, newPost];
         historyRef.current = newHistory;
-        //localStorage.setItem("chatHistory", JSON.stringify(newHistory));
-        return newHistory;       
+        localStorage.setItem("chatHistory", JSON.stringify(newHistory));
+        return newHistory;
       });
     }
   };
@@ -114,6 +114,7 @@ function App() {
     return newHistory;
   };
  
+  
   const onKeyUp = (e) => {
     if (e.key === "Enter" || e.which === 13) {
       onSubmit();
