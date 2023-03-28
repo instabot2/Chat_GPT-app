@@ -77,29 +77,34 @@ function App() {
     let index = 0;
     let interval = setInterval(() => {
       if (index < text.length) {
-        let newPost;
-        let lastItem = posts[posts.length - 1];
-        if (lastItem && lastItem.type === "bot") {
-          newPost = {
-            type: "bot",
-            post: lastItem.post + text.charAt(index),
-          };
-        } else {
-          newPost = {
-            type: "bot",
-            post: text.charAt(index),
-          };
-        }
         setPosts((prevState) => {
-          historyRef.current = [...prevState, newPost];
-          return [...prevState, newPost];
+          let lastItem = prevState.length > 0 ? prevState.pop() : null;
+          if (lastItem && lastItem.type !== "bot") {
+            prevState.push({
+              type: "bot",
+              post: text.charAt(index - 1),
+            });
+          } else if (lastItem) {
+            prevState.push({
+              type: "bot",
+              post: lastItem.post + text.charAt(index - 1),
+            });
+          } else {
+            prevState.push({
+              type: "bot",
+              post: text.charAt(index - 1),
+            });
+          }
+          historyRef.current = [...prevState];
+          return [...prevState];
         });
         index++;
       } else {
         clearInterval(interval);
       }
-    }, 10);
+    }, 20);
   };
+
 
   const updatePosts = (post, isBot, isLoading) => {
     if (isBot) {
