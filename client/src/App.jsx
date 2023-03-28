@@ -41,38 +41,7 @@ function App() {
     displayChatHistory(); // call the function here
   }, [posts]);
 
-
-
   
-  const clearCacheAndHistory = () => {
-    const confirmed = confirm("Clear cache and history?");
-    if (confirmed) {
-      window.localStorage.setItem("imageDisplayed", "false");
-      window.location.reload(true);
-      window.localStorage.clear();
-      window.sessionStorage.clear();
-      window.history.replaceState(null, null, window.location.href);
-    }
-  };
-  window.addEventListener("load", () => {
-    const imageDisplayed = window.localStorage.getItem("imageDisplayed");
-    if (imageDisplayed !== "true") {
-      document.getElementById("overlay").style.display = "block";
-      window.localStorage.setItem("imageDisplayed", "true");
-    } else {
-      document.getElementById("overlay").style.display = "none";
-    }
-  });
-  document.getElementById("overlay").addEventListener("click", () => {
-    document.getElementById("overlay").style.display = "none";
-    window.localStorage.setItem("imageDisplayed", "false");
-  });
-  const handleLogout = () => {
-    // Perform any necessary logout logic
-    // Clear cache and history
-    clearCacheAndHistory();
-  };
-
   // if error response data, try fixing the API key at server render
   const fetchBotResponse = async (input) => {
     try {
@@ -188,6 +157,35 @@ function App() {
       });
       setInput(lastItem.post);
     }
+  };
+
+  const clearCacheAndHistory = () => {
+    const confirmed = confirm("Clear cache and history?");
+    if (confirmed) {
+      window.localStorage.setItem("imageDisplayed", "false");
+      window.location.reload(true);
+      window.localStorage.clear();
+      window.sessionStorage.clear();
+      window.history.replaceState(null, null, window.location.href);
+    }
+  };
+  window.addEventListener("load", () => {
+    const imageDisplayed = window.localStorage.getItem("imageDisplayed");
+    if (imageDisplayed !== "true") {
+      document.getElementById("overlay").style.display = "block";
+      window.localStorage.setItem("imageDisplayed", "true");
+    } else {
+      document.getElementById("overlay").style.display = "none";
+    }
+  });
+  document.getElementById("overlay").addEventListener("click", () => {
+    document.getElementById("overlay").style.display = "none";
+    window.localStorage.setItem("imageDisplayed", "false");
+  });
+  const handleLogout = () => {
+    // Perform any necessary logout logic
+    // Clear cache and history
+    clearCacheAndHistory();
   };
 
   return (
