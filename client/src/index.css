@@ -18,6 +18,11 @@
   box-sizing: border-box;
 }
 
+.small-img {
+  width: 10px;
+  height: 10px;
+}
+
 .chatGPT-app {
   /* max-width: 1200px; */
   max-width: 100%; /* or any other value that works for you */
