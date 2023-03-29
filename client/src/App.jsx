@@ -205,7 +205,7 @@ function App() {
   
   return (
     
-    <main className="chatGPT-app">
+     <main className="chatGPT-app">
       <section className="chat-container">
         <div className="layout">
           {posts.map((post, index) => (
@@ -227,19 +227,20 @@ function App() {
                   <img src={loadingIcon} />
                 </div>
               ) : (
-                <div className="post">{post.post}
-                
-                 <img
+                <div className="post">
+                  {/* Move the copy image before the post */}
+                  <img
                     src={copyImage}
                     alt="Copy"
                     style={{
                       width: "20px",
                       height: "20px",
                       cursor: "pointer",
+                      marginRight: "10px", // Add right margin to separate from post
                     }}
                     onClick={() => copyToClipboard(post.post)}
                   />
-                
+                  {post.post}
                 </div>
               )}
             </div>
@@ -287,6 +288,7 @@ function App() {
 
       </footer>
     </main>
+
   );
 }
 
