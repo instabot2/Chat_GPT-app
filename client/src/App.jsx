@@ -238,10 +238,6 @@ function App() {
                   <button className="copy-btn" onClick={() => copyToClipboard(post.post)}>
                     <i className="fas fa-copy"></i>
                   </button>
-                  
-                  <button className="copy-btn" onClick={() => copyToClipboard(post.post)}>
-                    <img src="../assets/copy.png" alt="" />
-                  </button>
 
                 </div>
               )}
