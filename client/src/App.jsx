@@ -244,7 +244,7 @@ function App() {
                         cursor: "pointer",
                         //position: "absolute",
                         //left: "50%",
-                        bottom: "-20px",
+                        //bottom: "-20px",
                         transform: "translateX(-50%)",
                         pointerEvents: "auto", // Add this line
                       }}
