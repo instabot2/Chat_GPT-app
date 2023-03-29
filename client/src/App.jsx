@@ -239,11 +239,11 @@ function App() {
                       src={copyImage}
                       alt="Copy"
                       style={{
-                        width: "16px",
-                        height: "16px",
+                        width: "20px",
+                        height: "20px",
                         cursor: "pointer",
                         //position: "absolute",
-                        //left: "50%",
+                        left: "50%",
                         bottom: "-20px",
                         transform: "translateX(-50%)",
                         pointerEvents: "auto", // Add this line
