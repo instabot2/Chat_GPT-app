@@ -233,24 +233,24 @@ function App() {
                   </div>
                 ) : (
                   <div className="post">
-                  
-                  <img
-                    src={copyImage}
-                    alt="Copy"
-                    style={{
-                      width: "16px",
-                      height: "16px",
-                      cursor: "pointer",
-                      //position: "absolute",
-                      //left: "50%",
-                      bottom: "-20px",
-                      transform: "translateX(-50%)",
-                      pointerEvents: "auto", // Add this line
-                    }}
-                    onClick={() => copyToClipboard(post.post)}
-                  />
-       
                     {post.post}
+                    
+                    <img
+                      src={copyImage}
+                      alt="Copy"
+                      style={{
+                        width: "16px",
+                        height: "16px",
+                        cursor: "pointer",
+                        //position: "absolute",
+                        //left: "50%",
+                        bottom: "-20px",
+                        transform: "translateX(-50%)",
+                        pointerEvents: "auto", // Add this line
+                      }}
+                      onClick={() => copyToClipboard(post.post)}
+                    />
+                    
                   </div>
                 )}
               </div>
