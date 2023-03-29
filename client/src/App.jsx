@@ -221,15 +221,9 @@ function App() {
                     post.type === "bot" || post.type === "loading" ? bot : user
                   }
                 />
-              </div>
-              {post.type === "loading" ? (
-                <div className="loader">
-                  <img src={loadingIcon} />
-                </div>
-              ) : (
-                <div className="post">
-                  {/* Move the copy image before the post */}       
-                  <img
+                
+                {/* Move the copy image before the post */}       
+                <img
                     src={copyImage}
                     alt="Copy"
                     style={{
@@ -242,8 +236,16 @@ function App() {
                       transform: "translateX(-50%)",
                     }}
                     onClick={() => copyToClipboard(post.post)}
-                  />
-                     
+               />
+                
+                
+              </div>
+              {post.type === "loading" ? (
+                <div className="loader">
+                  <img src={loadingIcon} />
+                </div>
+              ) : (
+                <div className="post">            
                   {post.post}
                 </div>
               )}
