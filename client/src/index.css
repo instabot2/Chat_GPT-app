@@ -18,6 +18,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+.copy-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-left: 8px;
+  color: #bbb;
+}
+
 
 .chatGPT-app {
   /* max-width: 1200px; */
@@ -36,15 +45,6 @@
     max-width: 60vw;
   }
 }
-.copy-btn {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 1.2rem;
-  margin-left: 8px;
-  color: #bbb;
-}
-
 
 footer {
   display: flex;
