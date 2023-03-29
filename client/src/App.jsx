@@ -129,7 +129,6 @@ function App() {
     }, 20);
   };
 
-
   const updatePosts = (post, isBot, isLoading) => {
     if (isBot) {
       autoTypingBotResponse(post);
@@ -208,7 +207,6 @@ function App() {
     document.body.removeChild(textarea);
   };
 
-  
   return (
 
       <main className="chatGPT-app">
