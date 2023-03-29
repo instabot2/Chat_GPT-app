@@ -209,24 +209,6 @@ function App() {
       <section className="chat-container">
         <div className="layout">
           {posts.map((post, index) => (
-    
-                {/* Move the copy image before the post */}       
-                <img
-                    src={copyImage}
-                    alt="Copy"
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      cursor: "pointer",
-                      position: "absolute",
-                      left: "50%",
-                      bottom: "-20px",
-                      transform: "translateX(-50%)",
-                    }}
-                    onClick={() => copyToClipboard(post.post)}
-               />
-    
-    
             <div
               key={index}
               className={`chat-bubble ${
@@ -245,7 +227,24 @@ function App() {
                   <img src={loadingIcon} />
                 </div>
               ) : (
-                <div className="post">            
+                <div className="post">
+                
+                {/* Move the copy image before the post */}       
+                <img
+                    src={copyImage}
+                    alt="Copy"
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      cursor: "pointer",
+                      position: "absolute",
+                      left: "50%",
+                      bottom: "-20px",
+                      transform: "translateX(-50%)",
+                    }}
+                    onClick={() => copyToClipboard(post.post)}
+               />
+    
                   {post.post}
                 </div>
               )}
