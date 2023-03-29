@@ -207,80 +207,79 @@ function App() {
     document.execCommand('copy');
     document.body.removeChild(textarea);
   }
-
   
   return (
     
-    <main className="chatGPT-app">
-      <section className="chat-container">
-        <div className="layout">
-          {posts.map((post, index) => (
-            <div
-              key={index}
-              className={`chat-bubble ${
-                post.type === "bot" || post.type === "loading" ? "bot" : ""
-              }`}
-            >
-              <div className="avatar">
-                <img
-                  src={
-                    post.type === "bot" || post.type === "loading" ? bot : user
-                  }
-                />
-              </div>
-       
-              {post.type === "loading" ? (
-                <div className="loader">
-                  <img src={loadingIcon} />
+        <main className="chatGPT-app">
+          <section className="chat-container">
+            <div className="layout">
+              {posts.map((post, index) => (
+                <div
+                  key={index}
+                  className={`chat-bubble ${
+                    post.type === "bot" || post.type === "loading" ? "bot" : ""
+                  }`}
+                >
+                  <div className="avatar">
+                    <img
+                      src={
+                        post.type === "bot" || post.type === "loading" ? bot : user
+                      }
+                    />
+                  </div>
+
+                  <div className="post">
+                    {post.post}
+                  </div>
+
+                  <button className="copy-btn" onClick={() => copyToClipboard(post.post)}>
+                    <img src={copyImage} alt="Copy" />
+                  </button>
                 </div>
-              ) : (
-                <div className="post">
-                  {post.post}
-                </div>
-              )}
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
-      <footer>
-        <textarea
-          className="composebar"
-          value={input}
-          autoFocus
-          placeholder="Ask anything!"
-          rows={1}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyUp={onKeyUp}
-          style={{
-            overflowY: 'scroll',
-            resize: 'none',
-            border: 'none',
-            outline: 'none',
-            '-ms-overflow-style': 'none', /* IE and Edge */
-            'scrollbar-width': 'none', /* Firefox */
-            /* Change the scrollbar color */
-            '::-webkit-scrollbar': {
-              width: '6px',
-            },
-            '::-webkit-scrollbar-thumb': {
-              backgroundColor: 'gray',
-            },
-          }}
-          onScroll={(e) => {
-            e.preventDefault(); /* Prevent scrolling */
-            e.stopPropagation();
-          }}
-          onWheel={(e) => {
-            e.preventDefault(); /* Prevent scrolling */
-            e.stopPropagation();
-          }}
-        />
-        <div className="send-button" onClick={onSubmit}>
-          <img src={send} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="#" onClick={handleLogout}><img src={trash} alt="trash" height="14"/></a>
-        </div>
-      </footer>
-    </main>
+          </section>
+
+          <footer>
+            <textarea
+              className="composebar"
+              value={input}
+              autoFocus
+              placeholder="Ask anything!"
+              rows={1}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyUp={onKeyUp}
+              style={{
+                overflowY: 'scroll',
+                resize: 'none',
+                border: 'none',
+                outline: 'none',
+                '-ms-overflow-style': 'none', /* IE and Edge */
+                'scrollbar-width': 'none', /* Firefox */
+                /* Change the scrollbar color */
+                '::-webkit-scrollbar': {
+                  width: '6px',
+                },
+                '::-webkit-scrollbar-thumb': {
+                  backgroundColor: 'gray',
+                },
+              }}
+              onScroll={(e) => {
+                e.preventDefault(); /* Prevent scrolling */
+                e.stopPropagation();
+              }}
+              onWheel={(e) => {
+                e.preventDefault(); /* Prevent scrolling */
+                e.stopPropagation();
+              }}
+            />
+            <div className="send-button" onClick={onSubmit}>
+              <img src={send} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="#" onClick={handleLogout}><img src={trash} alt="trash" height="14"/></a>
+            </div>
+          </footer>
+        </main>
+
      
   );
 }
