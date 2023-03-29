@@ -17,21 +17,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-.copy-btn {
-  background-color: #4CAF50;
-  border: 1px solid #4CAF50;
-  padding: 0;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 10px;
-  background-image: url('./src/assets/copy.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 
 .chatGPT-app {
   /* max-width: 1200px; */
