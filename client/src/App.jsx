@@ -71,12 +71,12 @@ function App() {
       });
       const data = await response.json();  
       if (!data) {
-        throw new Error("No response data received from bot.");
+        throw new Error("No response data received from AI.");
       }
       return data;
     } catch (error) {
-      console.error("Error fetching bot response: ", error);
-      throw new Error("Could not fetch bot response.");
+      console.error("Error fetching AI response: ", error);
+      throw new Error("Could not fetch AI response.");
       return null;
     }
   };
@@ -93,7 +93,7 @@ function App() {
       })
       .catch((error) => {
         console.error(error);
-        updatePosts("Error fetching bot response.", true);
+        updatePosts("Error fetching AI response.", true);
       });
   };
   
