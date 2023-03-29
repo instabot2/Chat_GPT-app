@@ -228,7 +228,7 @@ function App() {
                 </div>
               ) : (
                 <div className="post">
-                  {/* Move the copy image before the post */}
+                  {/* Move the copy image before the post */}       
                   <img
                     src={copyImage}
                     alt="Copy"
@@ -236,10 +236,14 @@ function App() {
                       width: "20px",
                       height: "20px",
                       cursor: "pointer",
-                      marginRight: "5px", // Add right margin to separate from post
+                      position: "absolute",
+                      left: "50%",
+                      bottom: "-20px",
+                      transform: "translateX(-50%)",
                     }}
                     onClick={() => copyToClipboard(post.post)}
                   />
+                     
                   {post.post}
                 </div>
               )}
