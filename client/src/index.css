@@ -27,7 +27,7 @@
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 10px;
-  background-image: url('./copy.png');
+  background-image: url('../assets/copy.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
