@@ -198,6 +198,16 @@ function App() {
     clearCacheAndHistory();
   };
   
+  function copyToClipboard(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+  }
+
+  
   return (
     <main className="chatGPT-app">
       <section className="chat-container">
@@ -221,7 +231,13 @@ function App() {
                   <img src={loadingIcon} />
                 </div>
               ) : (
-                <div className="post">{post.post}</div>
+                <div className="post">{post.post}
+                
+                <button className="copy-btn" onClick={() => copyToClipboard(post.post)}>
+                <i className="fas fa-copy"></i>
+                </button>
+                 
+                </div>
               )}
             </div>
           ))}
