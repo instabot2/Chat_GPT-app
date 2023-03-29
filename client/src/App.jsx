@@ -209,6 +209,23 @@ function App() {
 
   
   return (
+    
+     <style>
+      .copy-btn {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+    </style>
+    
     <main className="chatGPT-app">
       <section className="chat-container">
         <div className="layout">
@@ -233,9 +250,12 @@ function App() {
               ) : (
                 <div className="post">
                   {post.post}
+
                   <button className="copy-btn" onClick={() => copyToClipboard(post.post)}>
                     <i className="fas fa-copy"></i>
+                    Copy
                   </button>
+
                 </div>
               )}
             </div>
@@ -281,23 +301,7 @@ function App() {
         </div>
       </footer>
     </main>
-    
-    <style>
-      .copy-btn {
-        background-color: #4CAF50;
-        border: none;
-        color: white;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 10px;
-      }
-    </style>
-    
+     
   );
 }
 
