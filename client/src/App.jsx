@@ -245,7 +245,7 @@ function App() {
                         //position: "absolute",
                         //left: "50%",
                         //bottom: "-20px",
-                        transform: "translateX(-50%)",
+                        //transform: "translateX(-50%)",
                         pointerEvents: "auto", // Add this line
                       }}
                       onClick={() => copyToClipboard(post.post)}
