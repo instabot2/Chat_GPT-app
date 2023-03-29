@@ -228,11 +228,7 @@ function App() {
                   }
                 />
               </div>
-              
-                  <button className="copy-btn" onClick={() => copyToClipboard(post.post)}>
-                    <img src={copyImage} alt="" style={{ width: "10px", height: "10px" }} />
-                  </button>
-              
+       
               {post.type === "loading" ? (
                 <div className="loader">
                   <img src={loadingIcon} />
