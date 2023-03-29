@@ -231,12 +231,11 @@ function App() {
                   <img src={loadingIcon} />
                 </div>
               ) : (
-                <div className="post">{post.post}
-                
-                <button className="copy-btn" onClick={() => copyToClipboard(post.post)}>
-                <i className="fas fa-copy"></i>
-                </button>
-                 
+                <div className="post">
+                  {post.post}
+                  <button className="copy-btn" onClick={() => copyToClipboard(post.post)}>
+                    <i className="fas fa-copy"></i>
+                  </button>
                 </div>
               )}
             </div>
@@ -276,12 +275,10 @@ function App() {
             e.stopPropagation();
           }}
         />
-
         <div className="send-button" onClick={onSubmit}>
           <img src={send} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <a href="#" onClick={handleLogout}><img src={trash} alt="trash" height="14"/></a>
         </div>
-
       </footer>
     </main>
   );
