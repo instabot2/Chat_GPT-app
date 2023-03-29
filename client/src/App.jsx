@@ -203,7 +203,8 @@ function App() {
     navigator.clipboard.writeText(text);
   };
   
-    return (
+  return (
+    
     <main className="chatGPT-app">
       <section className="chat-container">
         <div className="layout">
