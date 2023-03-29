@@ -237,7 +237,7 @@ function App() {
                   {post.post}
 
                   <button className="copy-btn" onClick={() => copyToClipboard(post.post)}>
-                    <img src={copyImage} alt="Copy" />
+                    <img src={copyImage} alt="" className="small-img" />
                   </button>
 
                 </div>
