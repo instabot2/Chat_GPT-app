@@ -231,10 +231,19 @@ function App() {
                   <img src={loadingIcon} />
                 </div>
               ) : (
-                <div className="post">{post.post}</div>
-                
-
-                
+                <div className="post">
+                  {post.post}
+                  <img
+                    src={copyImage}
+                    alt="Copy"
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => copyToClipboard(post.post)}
+                  />
+                </div>
               )}
             </div>
           ))}
@@ -250,18 +259,18 @@ function App() {
           onChange={(e) => setInput(e.target.value)}
           onKeyUp={onKeyUp}
           style={{
-            overflowY: 'scroll',
-            resize: 'none',
-            border: 'none',
-            outline: 'none',
-            '-ms-overflow-style': 'none', /* IE and Edge */
-            'scrollbar-width': 'none', /* Firefox */
+            overflowY: "scroll",
+            resize: "none",
+            border: "none",
+            outline: "none",
+            "-ms-overflow-style": "none", /* IE and Edge */
+            "scrollbar-width": "none", /* Firefox */
             /* Change the scrollbar color */
-            '::-webkit-scrollbar': {
-              width: '6px',
+            "::-webkit-scrollbar": {
+              width: "6px",
             },
-            '::-webkit-scrollbar-thumb': {
-              backgroundColor: 'gray',
+            "::-webkit-scrollbar-thumb": {
+              backgroundColor: "gray",
             },
           }}
           onScroll={(e) => {
@@ -276,8 +285,10 @@ function App() {
 
         <div className="send-button" onClick={onSubmit}>
           <img src={send} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="#" onClick={handleLogout}><img src={trash} alt="trash" height="14"/></a>
-        </div>
+          <a href="#" onClick={handleLogout}>
+            <img src={trash} alt="trash" height="14" />
+          </a>
+        </div
 
       </footer>
     </main>
