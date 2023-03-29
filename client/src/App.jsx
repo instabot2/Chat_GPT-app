@@ -5,6 +5,7 @@ import trash from "./assets/trash.png";
 import user from "./assets/user.png";
 import bot from "./assets/bot.png";
 import loadingIcon from "./assets/loader.svg";
+import copyImage from './assets/copy.png';
 
 function App() {
   const [input, setInput] = useState("");
@@ -236,7 +237,7 @@ function App() {
                   {post.post}
 
                   <button className="copy-btn" onClick={() => copyToClipboard(post.post)}>
-                    <i className="fas fa-copy"></i>
+                    <img src={copyImage} alt="Copy" />
                   </button>
 
                 </div>
