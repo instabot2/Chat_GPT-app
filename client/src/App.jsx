@@ -232,7 +232,9 @@ function App() {
                     {post.post}
                   </div>
 
-                  <img src={copyImage} alt="Copy" style={{ width: '16px', height: '16px', cursor: 'pointer' }} onClick={() => copyToClipboard(post.post)} />
+                  <img src={copyImage} alt="Copy" 
+                  style={{ width: '16px', height: '16px', cursor: 'pointer' }} 
+                  onClick={() => copyToClipboard(post.post)} />
   
                 </div>
               ))}
