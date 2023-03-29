@@ -239,8 +239,8 @@ function App() {
                       src={copyImage}
                       alt="Copy"
                       style={{
-                        width: "20px",
-                        height: "20px",
+                        width: "16px",
+                        height: "16px",
                         cursor: "pointer",
                         //position: "absolute",
                         //left: "50%",
