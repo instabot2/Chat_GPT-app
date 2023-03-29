@@ -233,22 +233,23 @@ function App() {
                   </div>
                 ) : (
                   <div className="post">
-                    {/* Move the copy image before the post */}       
-                    <img
-                      src={copyImage}
-                      alt="Copy"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        cursor: "pointer",
-                        position: "absolute",
-                        left: "50%",
-                        bottom: "-20px",
-                        transform: "translateX(-50%)",
-                        pointerEvents: "auto", // Add this line
-                      }}
-                      onClick={() => copyToClipboard(post.post)}
-                    />
+                  
+                  <img
+                    src={copyImage}
+                    alt="Copy"
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      cursor: "pointer",
+                      position: "absolute",
+                      left: "50%",
+                      bottom: "-20px",
+                      transform: "translateX(-50%)",
+                      pointerEvents: "auto", // Add this line
+                    }}
+                    onClick={() => copyToClipboard(post.post)}
+                  />
+       
                     {post.post}
                   </div>
                 )}
