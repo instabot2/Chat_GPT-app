@@ -236,7 +236,7 @@ function App() {
                       width: "20px",
                       height: "20px",
                       cursor: "pointer",
-                      marginRight: "10px", // Add right margin to separate from post
+                      marginRight: "5px", // Add right margin to separate from post
                     }}
                     onClick={() => copyToClipboard(post.post)}
                   />
