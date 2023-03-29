@@ -241,7 +241,7 @@ function App() {
                       width: "20px",
                       height: "20px",
                       cursor: "pointer",
-                      position: "absolute",
+                      //position: "absolute",
                       left: "50%",
                       bottom: "-20px",
                       //transform: "translateX(-50%)",
