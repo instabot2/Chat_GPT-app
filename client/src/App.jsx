@@ -240,7 +240,7 @@ function App() {
                   </button>
                   
                   <button className="copy-btn" onClick={() => copyToClipboard(post.post)}>
-                    <img src="./copy.png" alt="copy icon" />
+                    <img src="../assets/copy.png" alt="" />
                   </button>
 
                 </div>
